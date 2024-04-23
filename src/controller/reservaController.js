@@ -19,6 +19,22 @@ class ReservaController extends Controller {
         }
     }
 
+    async cria(req, res) {
+        const { id_sala, dataReservada } = req.body;
+        const novoRegistro = req.body;
+        try {
+            const response = await axios.get(`http://localhost:3000/reserva/${id_sala}/${dataReservada}`);
+            if (response.status === 200) {
+                return res.status(404).json({ error: 'Sala não encontrada ou horário já reservado' });
+            }
+            const novoRegistroCriado = await this.entidadeService.criaRegistro(novoRegistro);
+            return res.status(201).json(novoRegistroCriado);
+        } catch (error) {
+            console.error('Erro ao criar reserva:', error);
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+    }
+
     async verificaHorarioReservaExistente(req, res) {
         const idSala = Number(req.params.idSala);
         const dataReservada = (req.params.dataReservada);       
