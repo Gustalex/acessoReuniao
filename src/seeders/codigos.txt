@@ -1,0 +1,11 @@
+npx sequelize-cli seed:generate --name demo-adm
+//criando adm
+
+npx sequelize-cli seed:generate --name demo-reservista
+//criando reservista
+
+npx sequelize-cli seed:generate --name demo-sala
+//criando sala
+
+npx sequelize-cli seed:generate --name demo-reserva
+//criando reserva

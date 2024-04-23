@@ -1,0 +1,11 @@
+npx sequelize-cli model:generate --name Adm --attributes login:string,senha:string
+//Criar adm
+
+npx sequelize-cli model:generate --name Reservista --attributes cpf:string,nome:string
+//Criar reservista
+
+npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,observacao:string
+//Criar sala
+
+npx sequelize-cli model:generate --name Reserva --attributes id_reservista:integer,id_sala:integer,id_adm:integer,dataReservada:date,createdAt:date,updatedAt:date
+//Criar reserva
