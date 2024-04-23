@@ -97,6 +97,10 @@ npm run dev
 > - iniciar a API
 
 ```
-npm npx sequelize-cli db:migrate 
+npx sequelize-cli db:migrate
 ```
 > - Criar o banco
+```
+npx sequelize-cli db:seed:all
+```
+> - Popular o banco
