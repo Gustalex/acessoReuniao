@@ -99,15 +99,3 @@ npm run dev
 npm npx sequelize-cli db:migrate 
 ```
 > - Criar o banco
-
-#### Algumas bibliotecas que podem vir a ser necessárias
-
-```
-npm install dotenv
-```
-> - baixar extensão para que a conexão com o banco seja feita de forma correta
-
-```
-npm install cors
-```
-> - para conectar a API ao front
