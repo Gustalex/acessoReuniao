@@ -22,7 +22,7 @@ class ReservaController extends Controller {
         const novoRegistro = req.body;
         try {
             const novoRegistroCriado = await reservaServices.criaRegistro(novoRegistro);
-            if (novoRegistroCriado) {
+            /*if (novoRegistroCriado) {
                 const regrasCoworking = `
                     As chaves das salas de estudo só podem ser entregues se for realizada uma reserva prévia, que é feita por aqui mesmo, e se tiverem no mínimo 3 pessoas presentes, e no máximo 5. O tempo máximo de permanência são 3 horas. Temos um tempo de tolerância para a retirada da chave de 30 MINUTOS, passando disso, se chegar algum grupo com no mínimo 3 pessoas presentes, e pedir a sala, entregaremos.
     
@@ -36,7 +36,7 @@ class ReservaController extends Controller {
                     mensagem: `Sua reserva foi confirmada.\n\nDetalhes da Reserva:\n${JSON.stringify(novoRegistroCriado)}\n\n${regrasCoworking}`
                 };
                 await this.enviaEmail({ body: { email, assunto, mensagem } }, res);
-            }
+            }*/
             return res.status(201).json(novoRegistroCriado);
         } catch (error) {
             return res.status(500).json({ error: error.message });

@@ -16,10 +16,10 @@ class ReservaServices extends Services{
 
     async verificaDisponibilidade(id_sala, dataReservada){
         try{
-            const reservas=await dataSource.Reserva.findAll({where:{id_sala:id_sala}});
-            if (!reservas) return false;
+            const reservas=await dataSource.Reserva.findAll({where:{id_sala:id_sala,dataReservada:dataReservada}});
+            if(reservas.length===0) return false;
             const reserva=reservas.find(reserva=>reserva.dataReservada===dataReservada && (reserva.situacao==='confirmada' || reserva.situacao==='pendente'));
-            return reserva;
+            return !reserva;
         }catch (error){
             throw error;
         }
