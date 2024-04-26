@@ -31,8 +31,10 @@ class ReservaServices extends Services{
         try{
             const response=await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada);
             if (response) return{error: 'Sala já reservada'};
-            const novoRegistroCriado =  dataSource.Reserva.create(novoRegistro);
-            /*if(novoRegistroCriado){
+            return dataSource.Reserva.create(novoRegistro);
+            /*
+            pensar depois numa maneira melhor de  como enviar mensagem para o whatsapp
+            if(novoRegistroCriado){
                 const regrasCoworking = `
 
     As chaves das salas de estudo só podem ser entregues se for realizada uma reserva prévia, que é feita por aqui mesmo, e se tiverem no mínimo 3 pessoas presentes, e no máximo 5. O tempo máximo de permanência são 3 horas. Temos um tempo de tolerância para a retirada da chave de 30 MINUTOS, passando disso, se chegar algum grupo com no mínimo 3 pessoas presentes, e pedir a sala, entregaremos.
