@@ -7,32 +7,20 @@ class ReservaServices extends Services{
     }
 
     async reservaStatus(situacao){
-        try{
-            return await dataSource.Reserva.findAll({where:{situacao:situacao}});
-        }catch (error){
-            throw error;
-        }
+        return await dataSource.Reserva.findAll({where:{situacao:situacao}});
     }
 
     async verificaDisponibilidade(id_sala, dataReservada){
-        try{
-            const reservas=await dataSource.Reserva.findAll({where:{id_sala:id_sala}});
-            if (!reservas) return false;
-            const reserva=reservas.find(reserva=>reserva.dataReservada===dataReservada && (reserva.situacao==='confirmada' || reserva.situacao==='pendente'));
-            return reserva;
-        }catch (error){
-            throw error;
-        }
+        const reservas=await dataSource.Reserva.findAll({where:{id_sala:id_sala}});
+        if(!reservas) return true;
+        const reserva=reservas.find(reserva=>reserva.dataReservada===dataReservada && (reserva.situacao==='confirmada' || reserva.situacao==='pendente'));
+        return !reserva;
     }
 
     async criaRegistro(novoRegistro){
-        try{
-            const response=await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada);
-            if (response) return{error: 'Sala já reservada'};
-            return dataSource.Reserva.create(novoRegistro);
-        }catch (error){
-            throw error;
-        }
+        const response=await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada);
+        if (response) return false;
+        return dataSource.Reserva.create(novoRegistro);
     }
 }
 
