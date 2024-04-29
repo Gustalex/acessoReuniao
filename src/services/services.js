@@ -11,19 +11,13 @@ class Services {
         return dataSource[this.model].findOne({ where: { id } });
     }
     async criaRegistro(dados) {
-        return dataSource[this.model].create(dados);
+        return !!dataSource[this.model].create(dados);
     }
     async atualizaRegistro(dadosAtualizados, id) {
-        const listaRegistrosAtualizados = await dataSource[this.model].update(
-            dadosAtualizados,
-            {where: { id:id},});
-            if(listaRegistrosAtualizados[0] === 0){
-                return false;
-            }
-        return true;
+        return !!await dataSource[this.model].update(dadosAtualizados,{where: { id:id},});
     }
     async deletaRegistro(id) {
-        return dataSource[this.model].destroy({ where: { id } });
+        return !!dataSource[this.model].destroy({ where: { id } });
     }
 }
 module.exports = Services;
