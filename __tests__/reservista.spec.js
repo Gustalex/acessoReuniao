@@ -14,7 +14,7 @@ describe('Teste das rotas de reservista', ()=>{
     it('Deve criar um novo reservista', async () => {
         const response = await request(app)
             .post('/reservista')
-            .send({id:5, cpf: "12345678900", email: "frist@man.com", nome: "Adão"});
+            .send({id:5, cpf: "12345678900", telefone: "(81) 69696-9696", nome: "Adão"});
         expect(response.status).toBe(201); 
     });
 

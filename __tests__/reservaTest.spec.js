@@ -27,13 +27,13 @@ describe('Teste das rotas de reserva', ()=>{
     it('Deve criar uma nova reserva', async () => {
         const response = await request(app)
             .post('/reserva')
-            .send({id:5, id_reservista: 1, id_sala: 1, id_adm: 1, dataReservada: "2024-05-24T19:37:11.779Z", situacao: "pendente"});
+            .send({id:5, id_reservista: 1, id_sala: 1, id_adm: 1, dataReservada: new Date(), horaReservada: '14:00:00', horaInicio: '14:30:00', horaFim: '17:30:00', situacao: 'pendente',});
         expect(response.status).toBe(201); 
     });
     it('Deve atualizar uma reserva existente', async () => {
         const response = await request(app)
             .put('/reserva/5')
-            .send({dataReservada: "2024-06-24T19:37:11.779Z"});
+            .send({dataReservada: "2024-06-24"});
         expect(response.status).toBe(200);
     });
     it('Deve deletar uma reserva existente', async () => {
