@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "service.js",
   "scripts": {
-    "dev": "concurrently \"nodemon serve.js\" \"python whatsapp_integration/app.py\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"nodemon serve.js\" \"npm run test\" \"python whatsapp_integration/app.py\"",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,8 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
