@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   Adm.init({
     login: DataTypes.STRING,
-    senha: DataTypes.STRING
+    senha: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Adm',

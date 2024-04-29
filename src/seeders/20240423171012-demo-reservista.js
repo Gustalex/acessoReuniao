@@ -7,27 +7,27 @@ module.exports = {
       {
         cpf: '12345678900',
         nome: 'Adão',
-        email: 'frist@man.com',
+        telefone: '(00) 00000-0000',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         cpf: '12345678901',
         nome: 'Enéas',
-        email: 'david00eneas@gmail.com',
+        telefone: '(81) 99955-4433',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         cpf: '12345678902',
         nome: 'Mariah cuie',
-        email: 'mulher@semFogao.com',
+        telefone: '(81) 99955-4433',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
         cpf: '12345678903',
         nome: 'Gustavo',
-        email: 'macaco@preto.com',
+        telefone: '(81) 99955-4433',
         createdAt: new Date(),
         updatedAt: new Date()
       }

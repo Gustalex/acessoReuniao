@@ -1,6 +1,5 @@
 const request=require('supertest');
-const app = 'http://localhost:3000';
-
+const app='http://localhost:3000';
 describe('Teste das rotas de reservista', ()=>{
     it('Deve listar todos os reservistas', async () => {
         const response = await request(app).get('/reservista');

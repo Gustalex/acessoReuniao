@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     andar: DataTypes.INTEGER,
     area: DataTypes.STRING,
     capMax: DataTypes.INTEGER,
-    observacao: DataTypes.STRING
+    observacao: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Sala',

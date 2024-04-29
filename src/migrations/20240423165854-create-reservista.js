@@ -13,9 +13,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      email: {
+      telefone: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

@@ -12,8 +12,10 @@ module.exports = (sequelize, DataTypes) => {
    }
   Reservista.init({
     cpf: DataTypes.STRING,
-    email: DataTypes.STRING,
-    nome: DataTypes.STRING
+    telefone: DataTypes.STRING,
+    nome: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Reservista',

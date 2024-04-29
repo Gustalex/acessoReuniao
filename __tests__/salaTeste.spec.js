@@ -1,5 +1,5 @@
 const request=require('supertest');
-const app = 'http://localhost:3000';
+const app='http://localhost:3000';
 
 describe('Teste das rotas de sala', ()=>{
     it('Deve listar todas as salas', async () => {

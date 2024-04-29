@@ -1,6 +1,5 @@
 const request=require('supertest');
-const app = 'http://localhost:3000';
-
+const app='http://localhost:3000';
 describe('Teste das rotas de administrador', ()=>{
     it('Deve listar todos os administradores', async () => {
         const response = await request(app).get('/adm');
