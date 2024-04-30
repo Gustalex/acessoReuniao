@@ -11,15 +11,13 @@ describe('Teste das rotas de reserva', ()=>{
         expect(response.status).toBe(200);
     });
     it('Deve retornar se uma sala está disponivel em um certo horaio', async ()=>{
-        const response = await request(app).get('/reserva/1/2024-04-24T19:37:11.779Z');
+        const response = await request(app).get('/reserva/1/2024-04-24');
         expect(response.status).toBe(200);
     });
-    /*
-    Preciso adicionar as novas rotas de data e horario
     it('Deve retornar se uma sala tem alguma reserva em certa data', async()=>{
-
+        const response=await request(app).get('/reserva/1/2024-04-24/19:37:11');
+        expect(response.status).toBe(200);
     });
-    */
     it('Deve retornar todas as reservas de uma sala', async () => {
         const response = await request(app).get('/reserva/status/concluida');
         expect(response.status).toBe(200);

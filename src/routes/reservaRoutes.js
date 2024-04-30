@@ -7,7 +7,7 @@ router.get('/reserva',(req, res)=>reservaController.pegaTodos(req, res));
 router.get('/reserva/:id', (req, res)=>reservaController.pegaPorId(req,res));
 router.get('/reserva/status/:status',(req, res) => reservaController.reservasStatus(req, res));
 router.get('/reserva/:idSala/:dataReservada',(req, res)=>reservaController.verificaHorarioReservaExistente(req, res));
-//'2024-04-24 14:30'
+router.get('/reserva/:idSala/:dataReservada/:horaReservada',(req, res)=>reservaController.verificaDisponibilidade(req, res));
 router.post('/reserva',(req, res)=>reservaController.cria(req, res));
 router.post('/reserva/email',(req, res)=>reservaController.enviaEmail(req, res));
 router.put('/reserva/:id',(req, res)=>reservaController.atualiza(req, res));
