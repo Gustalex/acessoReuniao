@@ -6,8 +6,7 @@ class admServices extends Services {
         super('Adm'); //nome do modelo
     }
     async login(login, senha) {
-        const adm = dataSource.Adm.findOne({ where: {login, senha } });
-        return !!adm;
+        return dataSource.Adm.findOne({ where: {login, senha } });
     }
 }
 module.exports = admServices;

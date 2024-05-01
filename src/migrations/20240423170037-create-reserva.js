@@ -29,10 +29,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TIME
       },
-      horaInicio: {
-        allowNull: false,
-        type: Sequelize.TIME
-      },
       horaFim: {
         allowNull: false,
         type: Sequelize.TIME
