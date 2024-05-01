@@ -39,14 +39,13 @@ class ReservaServices extends Services{
         const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaReservada);
         if (response) return { error: 'Sala já reservada' };
         novoRegistro.situacao = 'pendente';
-        console.log("in here");
 
-
-        const [hours, minutes, seconds] = novoRegistro.horaReservada.split(':').map(Number);
-        const horaReservada = new Date(0, 0, 0, hours, minutes, seconds);
-        horaReservada.setHours(horaReservada.getHours() + 3);
-        const horaFim = `${horaReservada.getHours().toString().padStart(2, '0')}:${horaReservada.getMinutes().toString().padStart(2, '0')}:${horaReservada.getSeconds().toString().padStart(2, '0')}`;
-        novoRegistro.horaFim = horaFim;
+        const [hours, minutes] = novoRegistro.horaReservada.split(":").map(Number);
+        const novaHora = (hours + 3) % 24; // Adiciona 3 horas e garante que a hora permaneça dentro do intervalo de 0 a 23
+        const novaHoraString = `${novaHora.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        
+        novoRegistro.horaFim = novaHoraString;
+        
     
         const createdReserva = await dataSource.Reserva.create(novoRegistro);
         return createdReserva;
