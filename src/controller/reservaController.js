@@ -1,7 +1,6 @@
 const Controller=require('./controller.js');
 const ReservaServices=require('../services/reservaServices.js');
 const reservaServices=new ReservaServices();
-const nodemailer = require('nodemailer');
 const { enviaWhatsApp } = require('../services/whatsappServices');
 
 class ReservaController extends Controller {

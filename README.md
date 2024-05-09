@@ -106,3 +106,7 @@ npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 > - Popular o banco
+```
+https://www.postman.com/bold-crater-642292/workspace/teste-api-rest-reuniao/collection/23586519-325ce382-50e9-401e-9191-af7971b9a606?action=share&creator=23586519
+```
+> - Utilize o postman para testar a API
