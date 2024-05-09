@@ -14,13 +14,13 @@
 |Participantes|Curso|Função no porjeto|
 | -------| --------------------- | --------- |
 |Enéas |  Ciência da Computação | Software Engineer |
-|Mariah |  Engenharia da Computação | editar |
-|Gustavo |  Engenharia da Computação | editar |
+|Mariah |  Engenharia da Computação | Front End |
+|Gustavo |  Engenharia da Computação | Back End |
 
-O objetivo deste projeto é desenvolver uma API REST para auxiliar na gestão de reservas de salas no centro de inovação utilizando a arquitetura MVC (Model-View-Controller) com PHP 8.2 atraves do freamework laravel. O projeto será integrado ao banco de dados mysql, garantindo os recursos de criação, consulta, atualização e exclusão de reservas, gerenciamento de salas disponíveis e canceladas, além de relatórios de utilização das salas.
+O objetivo deste projeto é desenvolver uma API REST para auxiliar na gestão de reservas de salas no centro de inovação utilizando a arquitetura MVC (Model-View-Controller) com Javascript atraves do freamework nodeJS. O projeto será integrado ao banco de dados sqLite, garantindo os recursos de criação, consulta, atualização e exclusão de reservas, gerenciamento de salas disponíveis e canceladas, além de relatórios de utilização das salas.
 
 ### Funcionalidades Previstas
-> Este projeto consiste na criação e integração de uma API desenvolvida em PHP e MySQL para auxiliar operações CRUD (Create, Read, Update, Delete) e outras funcionalidade nas entidades de adm, sala, reservista, reserva.
+> Este projeto consiste na criação e integração de uma API desenvolvida em JS e sqLite para auxiliar operações CRUD (Create, Read, Update, Delete) e outras funcionalidade nas entidades de adm, sala, reservista, reserva.
 > - adm
 
 |ATRIBUTO|DESCRIÇÃO|TIPO|
@@ -77,13 +77,12 @@ O objetivo deste projeto é desenvolver uma API REST para auxiliar na gestão de
 
 
 ### Tecnologias Utilizadas
-> - PHP 8.2
-> - Laravel
-> - Composer 
-> - SQLite
-> - HTML
-> - CSS
-> - JavaScript
+> - Node.js: É uma plataforma de desenvolvimento que permite a execução de código JavaScript no lado do servidor. Ele é amplamente utilizado para criar aplicativos web escaláveis e eficientes.
+> - Express.js: É um framework web para Node.js que facilita a criação de aplicativos web e APIs. Ele fornece uma série de recursos para lidar com rotas, middleware e requisições HTTP, além de ser altamente flexível e modular.
+> - Jest: É um framework de teste de JavaScript que é amplamente utilizado para testes de unidade e teste de integração. Ele é conhecido por sua simplicidade e rapidez de configuração, e é uma ótima escolha para escrever testes funcionais em Node.js.
+> - Zod: É uma biblioteca de validação de dados em TypeScript/JavaScript. Ele permite definir esquemas de validação de dados de forma fácil e expressiva, garantindo que os dados estejam de acordo com as regras de negócio definidas.
+> - Nodemon: É uma ferramenta que ajuda no desenvolvimento de aplicações Node.js, monitorando as alterações nos arquivos do projeto e reiniciando automaticamente o servidor quando detecta alguma mudança. Isso ajuda a acelerar o processo de desenvolvimento, pois elimina a necessidade de reiniciar manualmente o servidor a cada alteração.
+> - SQLite: É um banco de dados relacional embutido que não requer um servidor separado para ser executado. Ele armazena todo o banco de dados em um único arquivo, o que o torna uma escolha conveniente para projetos menores ou para desenvolvimento e testes locais.
 
 ### Como Contribuir
 > - Se você deseja contribuir para este projeto, siga os passos abaixo:
