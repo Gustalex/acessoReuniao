@@ -14,9 +14,8 @@ describe('Teste das rotas de usuario', ()=>{
     it('Deve realizar login do usuario', async () => {
         const response = await request(app)
             .post('/user/login')
-            .send({ login: 'Adão', senha: '123456' });
-            console.log(response.body);
-            //expect(response.status).toBe(200);
+            .send({ login: 'adao', senha: '123456' });
+            expect(response.status).toBe(200);
     });
 
     it('Deve criar um novo usuario', async () => {
