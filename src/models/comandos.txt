@@ -1,8 +1,8 @@
 npx sequelize-cli model:generate --name TipoUsuario --attributes tipoUser:integer,glossarioTipo:string,createdAt:date,updatedAt:date
-//Criar tipo_usuario
+//Criar tipoUsuario
 
 npx sequelize-cli model:generate --name NivelAcesso --attributes nivelAcesso:integer,glossarioNivel:string,createdAt:date,updatedAt:date
-//Criar nivel_acesso
+//Criar nivelAcesso
 
 npx sequelize-cli model:generate --name User --attributes login:string,senha:string,identificador:string,ativo:boolean,tipo:integer,nivelAcesso:integer,createdAt:date,updatedAt:date
 //Criar user
@@ -11,7 +11,7 @@ npx sequelize-cli model:generate --name Participante --attributes userId:integer
 //Criar participante
 
 npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,observacao:string,situacao:char,createdAt:date,updatedAt:date
-//Criar Sala
+//Criar sala
 
 npx sequelize-cli model:generate --name Reserva --attributes id_reservista:integer,id_sala:integer,id_adm:integer,dataReservada:date,dataReservada:date,horaINicio:time,horaFimReserva:time,statusReserva:string,dataModificacaoStatus:date,motivoReserva:string,createdAt:date,updatedAt:date
 //Criar reserva

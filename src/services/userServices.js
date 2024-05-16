@@ -1,9 +1,9 @@
 const Services=require('./services.js');
-const dataSource=require('../models');
+const dataSource=require('../models/index.js');
 const z=require('zod');
-class admServices extends Services {
+class userServices extends Services {
     constructor() {
-        super('Adm'); //nome do modelo
+        super('User'); //nome do modelo
     }
     async login(login, senha) {
         return dataSource.Adm.findOne({ where: {login, senha } });
@@ -20,4 +20,4 @@ class admServices extends Services {
         return await dataSource.Adm.create(novoRegistro);
     }
 }
-module.exports=admServices;
+module.exports=userServices;

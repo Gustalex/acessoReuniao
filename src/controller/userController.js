@@ -1,15 +1,15 @@
 const Controller=require('./controller.js');
-const AdmServices=require('../services/admServices.js');
-const admServices=new AdmServices();
+const UserServices=require('../services/userServices.js');
+const userServices=new UserServices();
 
-class AdmController extends Controller{
+class userController extends Controller{
     constructor(){
-        super(admServices);
+        super(userServices);
     }
     async login(req,res){
         const {login,senha}=req.body;
         try{
-            const adm=await admServices.login(login,senha);
+            const adm=await userServices.login(login,senha);
             if(adm) return res.status(200).json(adm);
             return res.status(404).json({error:'Usuário não encontrado'});
         }catch(error){
@@ -17,4 +17,4 @@ class AdmController extends Controller{
         }    
     } 
 }
-module.exports=AdmController;
+module.exports=userController;
