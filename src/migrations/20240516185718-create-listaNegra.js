@@ -2,42 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('reservas', {
+    await queryInterface.createTable('listaNegras', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_sala: {
-        allowNull: false,
+      idResponsavel: {
         type: Sequelize.INTEGER
       },
-      id_adm: {
-        allowNull: false,
+      idReservaMotivo: {
         type: Sequelize.INTEGER
       },
-      id_reservista: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      dataReservada: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      horaReservada: {
-        allowNull: false,
-        type: Sequelize.TIME
-      },
-      horaFim: {
-        allowNull: false,
-        type: Sequelize.TIME
-      },
-      situacao: {
-        allowNull: false,
+      motivo: {
         type: Sequelize.STRING
       },
-      dataConclusao: {
+      dataBloqueio: {
+        type: Sequelize.DATE
+      },
+      created_at: {
+        type: Sequelize.DATE
+      },
+      updated_at: {
         type: Sequelize.DATE
       },
       createdAt: {
@@ -51,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('reservas');
+    await queryInterface.dropTable('listaNegras');
   }
 };

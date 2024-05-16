@@ -1,3 +1,5 @@
 node_modules/
 database.sqlite
 whatsapp_integration/.env
+bancoDeDados.sql
+modeloEntidadeRelacionamento.mwb

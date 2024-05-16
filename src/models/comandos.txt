@@ -1,11 +1,27 @@
-npx sequelize-cli model:generate --name Adm --attributes login:string,senha:string
-//Criar adm
+npx sequelize-cli model:generate --name TipoUsuario --attributes tipoUser:integer,glossarioTipo:string,createdAt:date,updatedAt:date
+//Criar tipo_usuario
 
-npx sequelize-cli model:generate --name Reservista --attributes cpf:string,nome:string
-//Criar reservista
+npx sequelize-cli model:generate --name NivelAcesso --attributes nivelAcesso:integer,glossarioNivel:string,createdAt:date,updatedAt:date
+//Criar nivel_acesso
 
-npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,observacao:string
-//Criar sala
+npx sequelize-cli model:generate --name User --attributes login:string,senha:string,identificador:string,ativo:boolean,tipo:integer,nivelAcesso:integer,createdAt:date,updatedAt:date
+//Criar user
 
-npx sequelize-cli model:generate --name Reserva --attributes id_reservista:integer,id_sala:integer,id_adm:integer,dataReservada:date,createdAt:date,updatedAt:date
+npx sequelize-cli model:generate --name Participante --attributes userId:integer,nome:string,sobrenome:string,email:string,numTelefone:string,createdAt:date,updatedAt:date
+//Criar participante
+
+npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,observacao:string,situacao:char,createdAt:date,updatedAt:date
+//Criar Sala
+
+npx sequelize-cli model:generate --name Reserva --attributes id_reservista:integer,id_sala:integer,id_adm:integer,dataReservada:date,dataReservada:date,horaINicio:time,horaFimReserva:time,statusReserva:string,dataModificacaoStatus:date,motivoReserva:string,createdAt:date,updatedAt:date
 //Criar reserva
+
+npx sequelize-cli model:generate --name Fracaso --attributes idUser:integer,exception:string,mensage:string,createdAt:date,updatedAt:date
+//Criar fracaso
+
+
+npx sequelize-cli model:generate --name ListaNegra --attributes idResponsavel:integer,idReservaMotivo:integer,motivo:string,dataBloqueio:date,createdAt:date,updatedAt:date
+//Criar listaNegra
+
+npx sequelize-cli model:generate --name Reuniao --attributes reservaId:integer,idParticipante:integer,createdAt:date,updatedAt:date
+//Criar reuniao

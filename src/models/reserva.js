@@ -1,21 +1,19 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Reserva extends Model {
     static associate(models) {
       Reserva.belongsTo(models.Sala, {
         foreignKey: 'id_sala',
-        as: 'salas'
+        as: 'Sala',
       });
-      Reserva.belongsTo(models.Adm, {
+      Reserva.belongsTo(models.User, {
         foreignKey: 'id_adm',
-        as: 'adms'
+        as: 'User',
       });
-      Reserva.belongsTo(models.Reservista, {
+      Reserva.belongsTo(models.Participante, {
         foreignKey: 'id_reservista',
-        as: 'reservistas'
+        as: 'Participante',
       });
     }
   }
@@ -24,16 +22,17 @@ module.exports = (sequelize, DataTypes) => {
     id_sala: DataTypes.INTEGER,
     id_adm: DataTypes.INTEGER,
     dataReservada: DataTypes.DATE,
-    horaReservada: DataTypes.TIME,
-    horaFim: DataTypes.TIME,
-    dataConclusao: DataTypes.DATE,
-    situacao: DataTypes.STRING,
+    horaInicio: DataTypes.TIME,
+    horaFimReserva: DataTypes.TIME,
+    statusReserva: DataTypes.STRING,
+    dataModificacaoStatus: DataTypes.DATE,
+    motivoReserva: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Reserva',
-    tableName: "reservas",
+    tableName: 'reservas',
   });
   return Reserva;
 };

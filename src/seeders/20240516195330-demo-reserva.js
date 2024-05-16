@@ -2,17 +2,17 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('reservas', [
       {
         id_reservista: 1,
         id_sala: 1,
         id_adm: 1,
         dataReservada: new Date(),
-        horaReservada: '10:00', 
-        horaFim: '13:30', 
-        situacao: 'Concluída',
-        dataConclusao: new Date(),
+        horaFimReserva: '10:30',
+        statusReserva: 'pendente',
+        dataModificacaoStatus: null,
+        motivoReserva: 'Reunião de equipe',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -21,10 +21,10 @@ module.exports = {
         id_sala: 2,
         id_adm: 1,
         dataReservada: new Date(),
-        horaReservada: '14:00',
-        horaFim: '17:30',
-        situacao: 'pendente',
-        dataConclusao: null,
+        horaFimReserva: '12:30',
+        statusReserva: 'pendente',
+        dataModificacaoStatus: null,
+        motivoReserva: 'Reunião de equipe',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -33,10 +33,10 @@ module.exports = {
         id_sala: 3,
         id_adm: 1,
         dataReservada: new Date(),
-        horaReservada: '14:00',
-        horaFim: '17:30',
-        situacao: 'pendente',
-        dataConclusao: null,
+        horaFimReserva: '09:30',
+        statusReserva: 'pendente',
+        dataModificacaoStatus: null,
+        motivoReserva: 'Reunião de equipe',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -45,10 +45,11 @@ module.exports = {
         id_sala: 1,
         id_adm: 1,
         dataReservada: new Date(),
-        horaReservada: '14:00',
-        horaFim: '17:30',
-        situacao: 'pendente',
-        dataConclusao: null,
+        horaInicio: '14:00',
+        horaFimReserva: '17:30',
+        statusReserva: 'pendente',
+        dataModificacaoStatus: null,
+        motivoReserva: 'Reunião de equipe',
         createdAt: new Date(),
         updatedAt: new Date()
       }
