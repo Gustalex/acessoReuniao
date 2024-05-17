@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     id_reservista: DataTypes.INTEGER,
     id_sala: DataTypes.INTEGER,
     id_adm: DataTypes.INTEGER,
+    dataReserva: DataTypes.DATE,
     dataReservada: DataTypes.DATE,
     horaInicio: DataTypes.TIME,
     horaFimReserva: DataTypes.TIME,

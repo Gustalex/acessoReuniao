@@ -7,7 +7,7 @@ class ReservaServices extends Services{
     }
 
     async reservaStatus(situacao){
-        return await dataSource.Reserva.findAll({where:{situacao:situacao}});
+        return await dataSource.Reserva.findAll({where:{statusReserva:situacao}});
     }
 
     async verificaHorarioReserva(id_sala, dataReservada) {
@@ -15,7 +15,7 @@ class ReservaServices extends Services{
             where: {
                 id_sala: id_sala,
                 dataReservada: dataReservada,
-                situacao: ['confirmada', 'pendente']
+                statusReserva: ['confirmada', 'pendente']
             }
         });
         return reservas.length > 0;
@@ -29,22 +29,22 @@ class ReservaServices extends Services{
                 id_sala: id_sala,
                 dataReservada: dataReservada,
                 horaReservada: horaReservada,
-                situacao: ['confirmada', 'pendente']
+                statusReserva: ['confirmada', 'pendente']
             }
         });
         return reserva;
     }
     
     async criaRegistro(novoRegistro) {
-        const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaReservada);
+        const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaInicio);
         if (response) return { error: 'Sala já reservada' };
-        novoRegistro.situacao = 'pendente';
+        novoRegistro.statusReserva = 'pendente';
 
-        const [hours, minutes] = novoRegistro.horaReservada.split(":").map(Number);
+        const [hours, minutes] = novoRegistro.horaInicio.split(":").map(Number);
         const novaHora = (hours + 3) % 24; // Adiciona 3 horas e garante que a hora permaneça dentro do intervalo de 0 a 23
         const novaHoraString = `${novaHora.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         
-        novoRegistro.horaFim = novaHoraString;
+        novoRegistro.horaFimReserva = novaHoraString;
         
     
         const createdReserva = await dataSource.Reserva.create(novoRegistro);
