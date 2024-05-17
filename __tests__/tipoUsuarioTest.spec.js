@@ -35,9 +35,9 @@ describe('Teste das rotas de tipoUsuario', ()=>{
             const novaTipoUsuario = { ...tipoUsuario };
             delete novaTipoUsuario[atributo];
             const response = await request(app)
-                .put('/tipoUsuario/1')
+                .put('/tipoUsuario/5')
                 .send(novaTipoUsuario);
-            expect(response.status).toBe(500);
+                expect(response.status).toBe(500);
         });
     });
     it('Deve deletar uma tipoUsuario existente', async () => {
