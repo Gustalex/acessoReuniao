@@ -10,16 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       tipoUser: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       glossarioTipo: {
+        allowNull: false,
         type: Sequelize.STRING
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

@@ -10,28 +10,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       andar: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       area: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       capMax: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       observacao: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       situacao: {
+        allowNull: false,
         type: Sequelize.CHAR
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

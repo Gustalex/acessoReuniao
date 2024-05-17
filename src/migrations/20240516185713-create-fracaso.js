@@ -10,16 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idUser: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       exception: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       mensage: {
+        allowNull: false,
         type: Sequelize.STRING
-      },
-      created_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

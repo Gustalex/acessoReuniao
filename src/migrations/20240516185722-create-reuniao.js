@@ -10,16 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       reservaId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       idParticipante: {
+        allowNull: false,
         type: Sequelize.INTEGER
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

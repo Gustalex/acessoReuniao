@@ -10,28 +10,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       login: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       senha: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       identificador: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       ativo: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       tipo: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       nivelAcesso: {
+        allowNull: false,
         type: Sequelize.INTEGER
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

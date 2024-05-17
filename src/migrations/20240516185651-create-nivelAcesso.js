@@ -10,16 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nivelAcesso: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       glossarioNivel: {
+        allowNull: false,
         type: Sequelize.STRING
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

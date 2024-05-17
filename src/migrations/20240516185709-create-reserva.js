@@ -10,40 +10,44 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_reservista: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       id_sala: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       id_adm: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      dataReservada: {
+      dataReserva: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       dataReservada: {
+        allowNull: false,
         type: Sequelize.DATE
       },
-      horaINicio: {
+      horaInicio: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       horaFimReserva: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       statusReserva: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dataModificacaoStatus: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       motivoReserva: {
+        allowNull: false,
         type: Sequelize.STRING
-      },
-      createdAt: {
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

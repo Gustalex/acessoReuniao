@@ -10,21 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idResponsavel: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       idReservaMotivo: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       motivo: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       dataBloqueio: {
-        type: Sequelize.DATE
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       createdAt: {
