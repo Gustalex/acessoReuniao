@@ -55,7 +55,7 @@ describe('Teste das rotas de listaNegra', () => {
     });
 
     it('Deve deletar uma listaNegra existente', async () => {
-        const response = await request(app).delete('/listaNegra/3');
+        const response = await request(app).delete('/listaNegra/2');
         expect(response.status).toBe(200);
     });
 });
