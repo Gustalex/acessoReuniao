@@ -2,13 +2,11 @@ const request = require('supertest');
 const app = 'http://localhost:3000';
 
 describe('Teste das rotas de nivelAcesso', () => {
-    const attributes = ['nivelAcesso', 'glossarioNivel'];
+    const atributos = ['nivelAcesso', 'glossarioNivel'];
     const validData = {
         id:5, //Importante travar no id 5 para não dar erro
         nivelAcesso: 1,
         glossarioNivel: 'Nível de Acesso Exemplo',
-        createdAt: new Date(),
-        updatedAt: new Date()
     };
 
     it('Deve listar todas as nivelAcessos', async () => {
@@ -25,14 +23,13 @@ describe('Teste das rotas de nivelAcesso', () => {
         const response = await request(app)
             .post('/nivelAcesso')
             .send(validData);
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
     });
 
     it('Deve atualizar uma nivelAcesso existente com todos os atributos', async () => {
         const updatedData = {
             nivelAcesso: 2,
             glossarioNivel: 'Novo Nível de Acesso',
-            updatedAt: new Date()
         };
 
         const response = await request(app)
@@ -41,10 +38,9 @@ describe('Teste das rotas de nivelAcesso', () => {
         expect(response.status).toBe(200);
     });
 
-    attributes.forEach(attribute => {
-        it(`Deve retornar erro ao tentar atualizar com o atributo ${attribute} nulo`, async () => {
-            const updatedData = { ...validData, [attribute]: null };
-
+    atributos.forEach(atributo => {
+        it(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
+            const updatedData = { ...validData, [atributo]: null };
             const response = await request(app)
                 .put('/nivelAcesso/5')
                 .send(updatedData);

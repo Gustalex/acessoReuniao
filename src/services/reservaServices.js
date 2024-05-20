@@ -1,9 +1,20 @@
 const Services=require('./services.js');
 const dataSource=require('../models');
-
+const z=require('zod');
 class ReservaServices extends Services{
     constructor(){
-        super('Reserva'); // nome do modelo
+        super('Reserva', z.object({
+            id_reservista: z.number().int().positive(),
+            id_sala: z.number().int().positive(),
+            id_adm: z.number().int().positive(),
+            dataReserva: z.date(),
+            dataReservada: z.date(),
+            horaInicio: z.string(),
+            horaFimReserva: z.string(),
+            statusReserva: z.string(),
+            dataModificacaoStatus: z.date(),
+            motivoReserva: z.string()
+        })); // nome do modelo
     }
 
     async reservaStatus(situacao){

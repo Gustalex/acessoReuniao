@@ -2,14 +2,12 @@ const request = require('supertest');
 const app = 'http://localhost:3000';
 
 describe('Teste das rotas de fracaso', () => {
-    const attributes = ['idUser', 'exception', 'mensage'];
+    const atributos = ['idUser', 'exception', 'mensage'];
     const validData = {
         id:1, //Importante travar no id 1 para não dar erro
         idUser: 1,
         exception: 'Exemplo de exceção',
         mensage: 'Mensagem de exemplo',
-        createdAt: new Date(),
-        updatedAt: new Date()
     };
 
     it('Deve listar todas as fracasos', async () => {
@@ -26,20 +24,20 @@ describe('Teste das rotas de fracaso', () => {
         const response = await request(app)
             .post('/fracaso')
             .send(validData);
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
     });
 
     it('Deve atualizar uma fracaso existente com todos os atributos', async () => {
-        const updatedData = {idUser: 2,exception: 'Nova exceção',mensage: 'Nova mensagem',updatedAt: new Date()};
+        const updatedData = {idUser: 2,exception: 'Nova exceção',mensage: 'Nova mensagem'};
         const response = await request(app)
             .put('/fracaso/1')
             .send(updatedData);
         expect(response.status).toBe(200);
     });
 
-    attributes.forEach(attribute => {
-        it(`Deve retornar erro ao tentar atualizar com o atributo ${attribute} nulo`, async () => {
-            const updatedData = { ...validData, [attribute]: null };
+    atributos.forEach(atributo => {
+        it(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
+            const updatedData = { ...validData, [atributo]: null };
             const response = await request(app)
                 .put('/fracaso/1')
                 .send(updatedData);

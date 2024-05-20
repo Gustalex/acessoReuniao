@@ -7,8 +7,6 @@ describe('Teste das rotas de reuniao', ()=>{
         id: 2,
         reservaId: 1,
         idParticipante: 1,
-        createdAt: new Date(),
-        updatedAt: new Date(),
     };
     it('Deve listar todas as reuniaos', async () => {
         const response = await request(app).get('/reuniao');
@@ -22,22 +20,21 @@ describe('Teste das rotas de reuniao', ()=>{
         const response = await request(app)
             .post('/reuniao')
             .send(reuniao);
-        expect(response.status).toBe(201); 
+        expect(response.status).toBe(200); 
     });
     it('Deve atualizar uma reuniao existente', async () => {
         const response = await request(app)
             .put('/reuniao/2')
-            .send({idParticipante:2,updatedAt: new Date()});
+            .send({idParticipante:2});
         expect(response.status).toBe(200);
     });
-    atributos.forEach((atributo) => {
-        it(`Deve retornar erro 400 ao tentar criar uma reuniao sem o atributo '${atributo}'`, async () => {
-            const novaReuniao = { ...reuniao };
-            delete novaReuniao[atributo];
+    atributos.forEach(atributo => {
+        it(`Deve retornar erro 500 ao tentar atualizar uma reunião sem o atributo '${atributo}'`, async () => {
+            const novaReuniao = { ...reuniao, [atributo]:null };
             const response = await request(app)
-                .post('/reuniao')
-                .send(novaReuniao);
-            expect(response.status).toBe(500);
+                .put('/reuniao/2')
+                .send(novaReuniao);    
+            expect(response.status).toBe(500);    
         });
     });
     it('Deve deletar uma reuniao existente', async () => {

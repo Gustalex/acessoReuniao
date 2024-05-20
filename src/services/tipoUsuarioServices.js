@@ -1,8 +1,14 @@
 const Services = require('./services.js');
+const z = require('zod');
 
-class tipoUsuarioServices extends Services {
+
+class TipoUsuarioServices extends Services {
     constructor() {
-        super('TipoUsuario'); //nome do modelo
+        super('TipoUsuario', z.object({
+            tipoUser: z.number().int().nonnegative(),
+            glossarioTipo: z.string().min(4).max(20),
+        })); //nome do modelo
     }
 }
-module.exports = tipoUsuarioServices;
+
+module.exports = TipoUsuarioServices;

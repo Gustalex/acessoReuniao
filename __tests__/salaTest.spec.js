@@ -2,7 +2,7 @@ const request=require('supertest');
 const app='http://localhost:3000';
 
 describe('Teste das rotas de sala', ()=>{
-    const atributos = ['nome', 'andar', 'area', 'capMax', 'observacao'];
+    const atributos = ['nome', 'andar', 'area', 'capMax', 'observacao', 'situacao'];
     const sala={
         id:4,
         nome: "Sala 4",
@@ -11,8 +11,6 @@ describe('Teste das rotas de sala', ()=>{
         capMax: 5,
         observacao: "Arcondicionado quebrado",
         situacao: "A",
-        createdAt: new Date(),
-        updatedAt: new Date()
     }
     it('Deve listar todas as salas', async () => {
         const response = await request(app).get('/sala');
@@ -26,20 +24,19 @@ describe('Teste das rotas de sala', ()=>{
         const response = await request(app)
             .post('/sala')
             .send(sala);
-        expect(response.status).toBe(201); 
+            expect(response.status).toBe(200); 
     });
     it('Deve atualizar uma sala existente', async () => {
         const response = await request(app)
             .put('/sala/4')
-            .send({area: 'coworking', updatedAt: new Date()});
-        expect(response.status).toBe(200);
-    });
+            .send({area: 'coworking'});
+            expect(response.status).toBe(200);
+        });
     atributos.forEach((atributo) => {
-        it(`Deve retornar erro 400 ao tentar criar uma sala sem o atributo '${atributo}'`, async () => {
-            const novaSala = { ...sala };
-            delete novaSala[atributo];
+        it(`Deve retornar erro 500 ao tentar atualizar uma sala sem o atributo '${atributo}'`, async () => {
+            const novaSala = { ...sala, [atributo]: null};
             const response = await request(app)
-                .post('/sala')
+                .put('/sala/4')
                 .send(novaSala);
             expect(response.status).toBe(500);
         });

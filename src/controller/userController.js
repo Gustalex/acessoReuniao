@@ -11,9 +11,9 @@ class userController extends Controller{
         try{
             const user=await userServices.login(login,senha);
             if(user) return res.status(200).json(user);
-            return res.status(404).json({error:'Usuário não encontrado'});
-        }catch(error){
-            return res.status(500).json({error:error.message});
+            return res.status(404).json({message:'Usuário não encontrado'});
+        }catch(erro){
+            return res.status(500).json({message: erro.message,name: erro.name,stack: process.env.NODE_ENV === 'Enéas cometei um equivoco' ? erro.stack : 'o erro não está na produção, Enéas não erra, o usuario que é burro'});
         }    
     } 
 }

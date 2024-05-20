@@ -2,15 +2,13 @@ const request = require('supertest');
 const app = 'http://localhost:3000';
 
 describe('Teste das rotas de listaNegra', () => {
-    const attributes = ['idResponsavel', 'idReservaMotivo', 'motivo', 'dataBloqueio'];
+    const atributos = ['idResponsavel', 'idReservaMotivo', 'motivo', 'dataBloqueio'];
     const validData = {
         id:2, //Importante travar no id 2 para não dar erro
         idResponsavel: 1,
         idReservaMotivo: 1,
         motivo: 'Motivo de exemplo',
         dataBloqueio: new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date()
     };
 
     it('Deve listar todas as listaNegras', async () => {
@@ -27,7 +25,7 @@ describe('Teste das rotas de listaNegra', () => {
         const response = await request(app)
             .post('/listaNegra')
             .send(validData);
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
     });
 
     it('Deve atualizar uma listaNegra existente com todos os atributos', async () => {
@@ -35,7 +33,6 @@ describe('Teste das rotas de listaNegra', () => {
             idResponsavel: 2,
             idReservaMotivo: 2,
             motivo: 'Novo motivo',
-            updatedAt: new Date()
         };
 
         const response = await request(app)
@@ -44,9 +41,9 @@ describe('Teste das rotas de listaNegra', () => {
         expect(response.status).toBe(200);
     });
 
-    attributes.forEach(attribute => {
-        it(`Deve retornar erro ao tentar atualizar com o atributo ${attribute} nulo`, async () => {
-            const updatedData = { ...validData, [attribute]: null };
+    atributos.forEach(atributo => {
+        it(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
+            const updatedData = { ...validData, [atributo]: null };
             const response = await request(app)
                 .put('/listaNegra/2')
                 .send(updatedData);

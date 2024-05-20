@@ -2,8 +2,9 @@ const request=require('supertest');
 const app='http://localhost:3000';
 
 describe('Teste das rotas de reserva', ()=>{
-    const attributes = ['id_reservista', 'id_sala', 'id_adm', 'dataReserva', 'dataReservada', 'horaInicio', 'horaFimReserva', 'statusReserva', 'dataModificacaoStatus', 'motivoReserva'];
+    const atributos = ['id_reservista', 'id_sala', 'id_adm', 'dataReserva', 'dataReservada', 'horaInicio', 'horaFimReserva', 'statusReserva', 'dataModificacaoStatus', 'motivoReserva'];
     const validData = {
+        id:4,
         id_reservista:1,
         id_sala:2,
         id_adm:1,
@@ -12,8 +13,6 @@ describe('Teste das rotas de reserva', ()=>{
         horaInicio:'13:00',
         dataModificacaoStatus: new Date(),
         motivoReserva: 'Reunião de equipe',
-        createdAt: new Date(),
-        updatedAt: new Date()
     };
 
     it('Deve listar todas as reservas', async () => {
@@ -41,21 +40,17 @@ describe('Teste das rotas de reserva', ()=>{
         const response = await request(app)
             .post('/reserva')
             .send(validData);
-            
-        console.log(response.body);
-        console.log(response.body.error); // Exibe detalhes específicos do erro, se disponível
-        
-        expect(response.status).toBe(201);
+        expect(response.status).toBe(200);
     });
     it('Deve atualizar uma reserva existente', async () => {
         const response = await request(app)
             .put('/reserva/4')
-            .send({dataReservada: "2024-06-24",updatedData: new Date()});
+            .send({dataReservada: "2024-06-24"});
         expect(response.status).toBe(200);
     });
-    attributes.forEach(attribute => {
-        it(`Deve retornar erro ao tentar atualizar com o atributo ${attribute} nulo`, async () => {
-            const updatedData = { ...validData, [attribute]: null };
+    atributos.forEach(atributo => {
+        it(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
+            const updatedData = { ...validData, [atributo]: null };
             const response = await request(app)
                 .put('/reserva/4')
                 .send(updatedData);

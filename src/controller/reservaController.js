@@ -13,8 +13,8 @@ class ReservaController extends Controller {
         try{
             const reservas=await reservaServices.reservaStatus(situacao);
             return res.status(200).json(reservas);
-        }catch(error){
-            return res.status(500).json({error:error.message});
+        }catch(erro){
+            return res.status(500).json({message: erro.message,name: erro.name,});
         }
     }
 
@@ -23,8 +23,8 @@ class ReservaController extends Controller {
         try {
             const response=await reservaServices.verificaHorarioReserva(idSala, dataReservada);
             return res.status(200).json(response);
-        } catch (error) {
-            return res.status(500).json({ error: error.message });
+        } catch (erro) {
+            return res.status(500).json({message: erro.message,name: erro.name,});
         }
     }
 
@@ -33,8 +33,8 @@ class ReservaController extends Controller {
         try {
             const response=await reservaServices.verificaDisponibilidade(idSala, dataReservada, horaReservada);
             return res.status(200).json(response);
-        } catch (error) {
-            return res.status(500).json({ error: error.message });
+        } catch (erro) {
+            return res.status(500).json({message: erro.message,name: erro.name,});
         }
     }
     
@@ -55,9 +55,9 @@ class ReservaController extends Controller {
                 let mensagem_txt = `Olá! Uma nova reserva foi feita. Confira as regras do coworking: ${regrasCoworking}`;
                 await enviaWhatsApp(numero_cel, mensagem_txt);
             }*/
-            return res.status(201).json(novoRegistroCriado);
-        }catch(error){
-            return res.status(500).json({ error: error.message });
+            return res.status(200).json(novoRegistroCriado);
+        }catch(erro){
+            return res.status(500).json({message: erro.message,name: erro.name,stack:erro.stack});
         }
     }
 }
