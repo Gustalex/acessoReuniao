@@ -28,10 +28,9 @@ describe('Teste das rotas de fracaso', () => {
     });
 
     it('Deve atualizar uma fracaso existente com todos os atributos', async () => {
-        const updatedData = {idUser: 2,exception: 'Nova exceção',mensage: 'Nova mensagem'};
         const response = await request(app)
             .put('/fracaso/1')
-            .send(updatedData);
+            .send( {idUser: 2,exception: 'Nova exceção',mensage: 'Nova mensagem'});
         expect(response.status).toBe(200);
     });
 

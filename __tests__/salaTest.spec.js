@@ -24,14 +24,13 @@ describe('Teste das rotas de sala', ()=>{
         const response = await request(app)
             .post('/sala')
             .send(sala);
-            expect(response.status).toBe(200); 
+        expect(response.status).toBe(200); 
     });
-    it.only('Deve atualizar uma sala existente', async () => {
+    it('Deve atualizar uma sala existente', async () => {
         const response = await request(app)
             .put('/sala/4')
             .send({area: 'coworking'});
-            console.log(response.body);
-            //expect(response.status).toBe(200);
+        expect(response.status).toBe(200);
         });
     atributos.forEach((atributo) => {
         it(`Deve retornar erro 500 ao tentar atualizar uma sala sem o atributo '${atributo}'`, async () => {

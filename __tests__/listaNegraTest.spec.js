@@ -29,15 +29,9 @@ describe('Teste das rotas de listaNegra', () => {
     });
 
     it('Deve atualizar uma listaNegra existente com todos os atributos', async () => {
-        const updatedData = {
-            idResponsavel: 2,
-            idReservaMotivo: 2,
-            motivo: 'Novo motivo',
-        };
-
         const response = await request(app)
             .put('/listaNegra/2')
-            .send(updatedData);
+            .send({idResponsavel: 2, idReservaMotivo: 2, motivo: 'Novo motivo',});
         expect(response.status).toBe(200);
     });
 

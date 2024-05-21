@@ -30,16 +30,9 @@ describe('Teste das rotas de participante', () => {
     });
 
     it('Deve atualizar um participante existente com todos os atributos', async () => {
-        const updatedData = {
-            userId: 1,
-            nome: 'David',
-            sobrenome: 'Enéas',
-            numTelefone: '81988888888',
-        };
-
         const response = await request(app)
             .put('/participante/2')
-            .send(updatedData);
+            .send({userId: 1, nome: 'David', sobrenome: 'Enéas', numTelefone: '81988888888',});
         expect(response.status).toBe(200);
     });
 

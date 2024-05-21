@@ -26,8 +26,7 @@ describe('Teste das rotas de tipoUsuario', ()=>{
         const response = await request(app)
             .put('/tipoUsuario/5')
             .send({glossarioTipo:"Enéas é foda"});
-        //expect(response.status).toBe(200);
-        console.log(response.body);
+        expect(response.status).toBe(200);
     });
     atributos.forEach((atributo) => {
         it(`Deve retornar erro 500 ao tentar atualizar uma tipoUsuario sem o atributo '${atributo}'`, async () => {

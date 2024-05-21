@@ -2,7 +2,7 @@ const request=require('supertest');
 const app='http://localhost:3000';
 
 describe('Teste das rotas de reserva', ()=>{
-    const atributos = ['id_reservista', 'id_sala', 'id_adm', 'dataReserva', 'dataReservada', 'horaInicio', 'horaFimReserva', 'statusReserva', 'dataModificacaoStatus', 'motivoReserva'];
+    const atributos = ['id_reservista', 'id_sala', 'id_adm', 'dataReserva', 'dataReservada', 'horaInicio', 'statusReserva', 'dataModificacaoStatus', 'motivoReserva'];
     const validData = {
         id:4,
         id_reservista:1,
@@ -45,7 +45,7 @@ describe('Teste das rotas de reserva', ()=>{
     it('Deve atualizar uma reserva existente', async () => {
         const response = await request(app)
             .put('/reserva/4')
-            .send({dataReservada: "2024-06-24"});
+            .send({horaInicio:'13:30'});
         expect(response.status).toBe(200);
     });
     atributos.forEach(atributo => {

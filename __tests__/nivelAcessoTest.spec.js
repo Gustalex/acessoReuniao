@@ -27,14 +27,9 @@ describe('Teste das rotas de nivelAcesso', () => {
     });
 
     it('Deve atualizar uma nivelAcesso existente com todos os atributos', async () => {
-        const updatedData = {
-            nivelAcesso: 2,
-            glossarioNivel: 'Novo Nível de Acesso',
-        };
-
         const response = await request(app)
             .put('/nivelAcesso/5')
-            .send(updatedData);
+            .send({nivelAcesso: 2,glossarioNivel: 'Novo Nível de Acesso',});
         expect(response.status).toBe(200);
     });
 

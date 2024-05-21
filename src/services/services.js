@@ -5,6 +5,14 @@ class Services {
         this.model = nomeDoModel;
         this.validador = validador;
     }
+    validarDados(dados) {
+        try {
+            this.validador.parse(dados);
+        } catch (error) {
+            const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
+            throw new Error(`Dados inválidos: ${invalidFields}`);
+        }
+    }
     async pegaTodosOsRegistros() {
         return dataSource[this.model].findAll();
     }
@@ -12,29 +20,27 @@ class Services {
         return dataSource[this.model].findOne({ where: { id } });
     }
     async criaRegistro(dados) {
-        if (this.validador) {
-            try {
-                this.validador.parse(dados);
-            } catch (error) {
-                const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
-                throw new Error(`Dados inválidos: ${invalidFields}`);
-            }
-        }
+        this.validarDados(dados);
+
         dados.createdAt = new Date();
         dados.updatedAt = new Date();
         return dataSource[this.model].create(dados);
     }
     async atualizaRegistro(dadosAtualizados, id) {
-        if (this.validador) {
-            try {
-                this.validador.parse(dadosAtualizados);
-            } catch (error) {
-                const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
-                throw new Error(`Dados inválidos: ${invalidFields}`);
-            }
+        const dadosExistentes = await this.pegaUmRegistro(id);
+        if (!dadosExistentes) {
+            throw new Error('Registro não encontrado');
         }
-        dadosAtualizados.updatedAt = new Date();
-        return await dataSource[this.model].update(dadosAtualizados, { where: { id } });
+
+        const dadosParaAtualizar = {
+            ...dadosExistentes.toJSON(), 
+            ...dadosAtualizados,
+            updatedAt: new Date()
+        };
+
+        this.validarDados(dadosParaAtualizar);
+
+        return await dataSource[this.model].update(dadosParaAtualizar, { where: { id } });
     }
     async deletaRegistro(id) {
         return dataSource[this.model].destroy({ where: { id } });
