@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "service.js",
   "scripts": {
+    "predev": "npm install && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "dev": "concurrently \"nodemon serve.js\" \"npm run test\" \"python whatsapp_integration/app.py\"",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",

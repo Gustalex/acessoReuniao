@@ -23,9 +23,10 @@ describe('Teste das rotas de reuniao', ()=>{
         expect(response.status).toBe(200); 
     });
     it('Deve atualizar uma reuniao existente', async () => {
+        novaReuniao = { ...reuniao, idParticipante:2 };
         const response = await request(app)
             .put('/reuniao/2')
-            .send({idParticipante:2});
+            .send(novaReuniao);
         expect(response.status).toBe(200);
     });
     atributos.forEach(atributo => {
