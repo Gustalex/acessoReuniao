@@ -36,7 +36,7 @@ describe('Teste das rotas de reserva', ()=>{
         request(app).get('/reserva/status/concluida');
         expect(response.status).toBe(200);
     });
-    it.skip('Deve criar uma nova reserva', async () => {
+    it('Deve criar uma nova reserva', async () => {
         const response = await request(app)
             .post('/reserva')
             .send(validData);
