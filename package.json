@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "dev:django": "start-django.bat",
     "dev:django:unix": "sh start-django.sh",
-    "dev:unix": "npm-run-all --parallel dev:node  dev:django:unix"
+    "dev:unix": "npm-run-all --parallel dev:node dev:test dev:django:unix"
 },
   "keywords": [],
   "author": "",
