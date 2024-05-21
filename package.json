@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "service.js",
   "scripts": {
-    "dev": "concurrently \"nodemon serve.js\" \"npm run test\" \"python whatsapp_integration/app.py\"",
+    "dev": "concurrently \"nodemon serve.js\" \"npm run test\"",
     "test": "jest",
     "test:watch": "jest --watch"
   },
