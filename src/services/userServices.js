@@ -14,8 +14,26 @@ class UserServices extends Services {
         }));
     }
 
+    async salvarErro(exception, mensagem) {
+        const erro = {
+            exception: exception,
+            message: mensagem,
+        };
+        try {
+            await dataSource.Fracaso.create(erro);
+            console.log('Erro salvo com sucesso');
+        } catch (error) {
+            console.error('Falha ao salvar o erro no banco de dados:', error);
+        }
+    }
+
     async login(login, senha) {
-        return dataSource.User.findOne({ where: { login, senha } });
+        try{
+            return dataSource.User.findOne({ where: { login, senha } });
+        }catch(error){
+            await this.salvarErro(error.name, error.message);
+            throw error;
+        }
     }
 }
 

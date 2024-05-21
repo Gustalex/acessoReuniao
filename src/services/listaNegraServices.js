@@ -23,9 +23,6 @@ class listaNegraServices extends Services {
     }
     async criaRegistro(dados){
         this.validarDados(dados);
-
-        dados.createdAt = new Date();
-        dados.updatedAt = new Date();
         return dataSource.ListaNegra.create(dados);    }
 
     async consultarResponsavel(idResponsavel){

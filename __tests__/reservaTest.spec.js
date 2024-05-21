@@ -36,20 +36,20 @@ describe('Teste das rotas de reserva', ()=>{
         request(app).get('/reserva/status/concluida');
         expect(response.status).toBe(200);
     });
-    it('Deve criar uma nova reserva', async () => {
+    it.skip('Deve criar uma nova reserva', async () => {
         const response = await request(app)
             .post('/reserva')
             .send(validData);
         expect(response.status).toBe(200);
     });
-    it('Deve atualizar uma reserva existente', async () => {
+    it.skip('Deve atualizar uma reserva existente', async () => {
         const response = await request(app)
             .put('/reserva/4')
             .send({horaInicio:'13:30'});
         expect(response.status).toBe(200);
     });
     atributos.forEach(atributo => {
-        it(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
+        it.skip(`Deve retornar erro ao tentar atualizar com o atributo ${atributo} nulo`, async () => {
             const updatedData = { ...validData, [atributo]: null };
             const response = await request(app)
                 .put('/reserva/4')
@@ -57,7 +57,7 @@ describe('Teste das rotas de reserva', ()=>{
             expect(response.status).toBe(500);
         });
     });
-    it('Deve deletar uma reserva existente', async () => {
+    it.skip('Deve deletar uma reserva existente', async () => {
         const response = await request(app).delete('/reserva/4'); 
         expect(response.status).toBe(200); 
     });

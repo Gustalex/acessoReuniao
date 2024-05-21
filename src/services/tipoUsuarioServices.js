@@ -6,7 +6,7 @@ class TipoUsuarioServices extends Services {
     constructor() {
         super('TipoUsuario', z.object({
             tipoUser: z.number().int().nonnegative(),
-            glossarioTipo: z.string().min(4).max(20),
+            glossarioTipo: z.string().min(4).max(50),
         })); //nome do modelo
     }
 }

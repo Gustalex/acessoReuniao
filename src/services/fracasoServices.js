@@ -4,9 +4,8 @@ const z=require('zod');
 class fracasoServices extends Services {
     constructor() {
         super('Fracaso', z.object({
-            idUser: z.number().int().positive(),
             exception: z.string(),
-            mensage: z.string(),
+            mensagem : z.string(),
         })); //nome do modelo
     }
 }

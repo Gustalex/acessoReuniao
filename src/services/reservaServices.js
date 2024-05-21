@@ -19,7 +19,21 @@ class ReservaServices extends Services {
         super('Reserva', validador);
     }
 
-    validarDados(dados) {
+
+    async salvarErro(exception, mensagem) {
+        const erro = {
+            exception: exception,
+            message: mensagem,
+        };
+        try {
+            await dataSource.Fracaso.create(erro);
+            console.log('Erro salvo com sucesso');
+        } catch (error) {
+            console.error('Falha ao salvar o erro no banco de dados:', error);
+        }
+    }
+
+    async validarDados(dados) {
         if (dados.dataReserva && typeof dados.dataReserva === 'string') dados.dataReserva = new Date(dados.dataReserva);
         if (dados.dataReservada && typeof dados.dataReservada === 'string') dados.dataReservada = new Date(dados.dataReservada);
         if (dados.dataModificacaoStatus && typeof dados.dataModificacaoStatus === 'string') dados.dataModificacaoStatus = new Date(dados.dataModificacaoStatus);
@@ -27,16 +41,25 @@ class ReservaServices extends Services {
             this.validador.parse(dados);
         } catch (error) {
             const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
-            throw new Error(`Dados inválidos: ${invalidFields}`);
+            const errorMessage = `Dados inválidos: ${invalidFields}`;
+            await this.salvarErro(error.name, errorMessage);
+            throw new Error(errorMessage);
         }
+
     }
 
     async reservaStatus(situacao) {
-        return await dataSource.Reserva.findAll({ where: { statusReserva: situacao } });
+     try{
+           return await dataSource.Reserva.findAll({ where: { statusReserva: situacao } });
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
     }
 
     async verificaHorarioReserva(id_sala, dataReservada) {
-        const reservas = await dataSource.Reserva.findAll({
+        try{
+            const reservas = await dataSource.Reserva.findAll({
             where: {
                 id_sala: id_sala,
                 dataReservada: dataReservada,
@@ -44,10 +67,15 @@ class ReservaServices extends Services {
             }
         });
         return reservas.length > 0;
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
     }
 
     async verificaDisponibilidade(id_sala, dataReservada, horaReservada) {
-        const reservaDia = await this.verificaHorarioReserva(id_sala, dataReservada);
+        try{
+            const reservaDia = await this.verificaHorarioReserva(id_sala, dataReservada);
         if (!reservaDia) return false;
         const reserva = await dataSource.Reserva.findOne({
             where: {
@@ -58,10 +86,15 @@ class ReservaServices extends Services {
             }
         });
         return reserva;
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
     }
 
     async criaRegistro(novoRegistro) {
-        const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaInicio);
+        try{
+                   const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaInicio);
         if (response) return { error: 'Sala já reservada' };
         novoRegistro.statusReserva = 'pendente';
 
@@ -75,9 +108,15 @@ class ReservaServices extends Services {
 
         const createdReserva = await dataSource.Reserva.create(novoRegistro);
         return createdReserva;
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
     }
 
     async atualizaRegistro(dadosAtualizados, id) {
+        try{
+            
         const dadosExistentes = await this.pegaUmRegistro(id);
         if (!dadosExistentes) {
             throw new Error('Registro não encontrado');
@@ -97,8 +136,20 @@ class ReservaServices extends Services {
         this.validarDados(dadosParaAtualizar);
     
         return await dadosExistentes.update(dadosParaAtualizar);
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
     }
     
+    async buscarReservista(id_reservista){
+        try{
+        return await dataSource.Reserva.findOne({where:{id_reservista:id_reservista}});
+    }catch(error){
+        await this.salvarErro(error.name, error.message);
+        throw error;
+    }
+    }
     
 }
 

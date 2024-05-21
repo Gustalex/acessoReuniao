@@ -6,7 +6,7 @@ describe('Teste das rotas de reuniao', ()=>{
     const reuniao = {
         id: 2,
         reservaId: 1,
-        idParticipante: 1,
+        idParticipante: 1
     };
     it('Deve listar todas as reuniaos', async () => {
         const response = await request(app).get('/reuniao');

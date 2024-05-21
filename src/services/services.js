@@ -5,45 +5,90 @@ class Services {
         this.model = nomeDoModel;
         this.validador = validador;
     }
-    validarDados(dados) {
+
+    async salvarErro(exception, mensagem) {
+        const erro = {
+            exception: exception,
+            message: mensagem,
+        };
+        try {
+            await dataSource.Fracaso.create(erro);
+            console.log('Erro salvo com sucesso');
+        } catch (error) {
+            console.error('Falha ao salvar o erro no banco de dados:', error);
+        }
+    }
+
+    async validarDados(dados) {
         try {
             this.validador.parse(dados);
         } catch (error) {
             const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
-            throw new Error(`Dados inválidos: ${invalidFields}`);
+            const errorMessage = `Dados inválidos: ${invalidFields}`;
+            await this.salvarErro(error.name, errorMessage);
+            throw new Error(errorMessage);
         }
     }
+
     async pegaTodosOsRegistros() {
-        return dataSource[this.model].findAll();
-    }
-    async pegaUmRegistro(id) {
-        return dataSource[this.model].findOne({ where: { id } });
-    }
-    async criaRegistro(dados) {
-        this.validarDados(dados);
-
-        dados.createdAt = new Date();
-        dados.updatedAt = new Date();
-        return dataSource[this.model].create(dados);
-    }
-    async atualizaRegistro(dadosAtualizados, id) {
-        const dadosExistentes = await this.pegaUmRegistro(id);
-        if (!dadosExistentes) {
-            throw new Error('Registro não encontrado');
+        try {
+            return await dataSource[this.model].findAll();
+        } catch (error) {
+            await this.salvarErro(error.name, error.message);
+            throw error;
         }
-
-        const dadosParaAtualizar = {
-            ...dadosExistentes.toJSON(), 
-            ...dadosAtualizados,
-            updatedAt: new Date()
-        };
-
-        this.validarDados(dadosParaAtualizar);
-
-        return await dataSource[this.model].update(dadosParaAtualizar, { where: { id } });
     }
+
+    async pegaUmRegistro(id) {
+        try {
+            return await dataSource[this.model].findOne({ where: { id } });
+        } catch (error) {
+            await this.salvarErro(error.name, error.message);
+            throw error;
+        }
+    }
+
+    async criaRegistro(dados) {
+        try {
+            await this.validarDados(dados);
+            return await dataSource[this.model].create(dados);
+        } catch (error) {
+            await this.salvarErro(error.name, error.message);
+            throw error;
+        }
+    }
+
+    async atualizaRegistro(dadosAtualizados, id) {
+        try {
+            const dadosExistentes = await this.pegaUmRegistro(id);
+            if (!dadosExistentes) {
+                const errorMessage = 'Registro não encontrado';
+                await this.salvarErro('NotFound', errorMessage);
+                throw new Error(errorMessage);
+            }
+
+            const dadosParaAtualizar = {
+                ...dadosExistentes.toJSON(),
+                ...dadosAtualizados,
+                updatedAt: new Date(),
+            };
+
+            await this.validarDados(dadosParaAtualizar);
+
+            return await dataSource[this.model].update(dadosParaAtualizar, { where: { id } });
+        } catch (error) {
+            await this.salvarErro(error.name, error.message);
+            throw error;
+        }
+    }
+
     async deletaRegistro(id) {
-        return dataSource[this.model].destroy({ where: { id } });
+        try {
+            return await dataSource[this.model].destroy({ where: { id } });
+        } catch (error) {
+            await this.salvarErro(error.name, error.message);
+            throw error;
+        }
     }
 }
 

@@ -4,7 +4,7 @@
   "main": "service.js",
   "scripts": {
     "predev": "npm install && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "dev": "concurrently \"nodemon serve.js\" \"npm run test\" \"python whatsapp_integration/app.py\"",
+    "dev": "concurrently \"nodemon serve.js\" \"npm run test\"",
     "test": "jest"
   },
   "keywords": [],
