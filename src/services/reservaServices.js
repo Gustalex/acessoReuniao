@@ -62,6 +62,9 @@ class ReservaServices extends Services{
         return createdReserva;
     }
     
+    async buscarReservista(id_reservista){
+        return await dataSource.Reserva.findOne({where:{id_reservista:id_reservista}});
+    }
     
 }
 
