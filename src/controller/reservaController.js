@@ -43,18 +43,6 @@ class ReservaController extends Controller {
         const novoRegistro = req.body;
         try{
             const novoRegistroCriado = await reservaServices.criaRegistro(novoRegistro);
-            const reservista = await reservaServices.buscarReservista(novoRegistro.id_reservista);
-            if(novoRegistroCriado){
-                try{
-                    const subject = 'Confirmação de Reserva CIPT'
-                    const message = emailBody;
-                    const email = reservista.email
-                    await sendMail(subject, message, email);
-                }catch(erro){
-                    console.error(`Erro ao enviar o email: ${erro}`);
-                    throw erro;
-                }
-            }
             return res.status(200).json(novoRegistroCriado);
         }catch(erro){
             return res.status(500).json({message: erro.message,name: erro.name,stack:erro.stack});
