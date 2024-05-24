@@ -1,8 +1,6 @@
 const Controller=require('./controller.js');
 const ReservaServices=require('../services/reservaServices.js');
 const reservaServices=new ReservaServices();
-const { sendMail } = require('../services/emailServices.js');
-const emailBody = require('../utils/emailTemplate.js');
 
 class ReservaController extends Controller {
     constructor(){

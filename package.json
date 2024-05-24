@@ -8,9 +8,6 @@
     "test": "jest",
     "dev:node": "nodemon serve.js",
     "dev:test": "jest",
-    "dev:django": "start-django.bat",
-    "dev:django:unix": "sh start-django.sh",
-    "dev:unix": "npm-run-all --parallel dev:node dev:test dev:django:unix",
     "test:watch": "jest --watch"
   },
   "keywords": [],
