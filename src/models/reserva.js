@@ -18,8 +18,12 @@ module.exports = (sequelize, DataTypes) => {
   Reserva.init({
     idSala: DataTypes.INTEGER,
     idUsuario: DataTypes.INTEGER,
-    dataInicio: DataTypes.DATE,
-    dataFim: DataTypes.DATE,
+    dataReservada: DataTypes.Date,
+    horaInicio: DataTypes.Date, //pegar apenas horas e minutos
+    horaFimReserva:  DataTypes.Date,
+    statusReserva: DataTypes.STRING,
+    dataModificacaoStatus: DataTypes.DATE,
+    motivoReserva: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {
