@@ -1,10 +1,13 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class NivelAcesso extends Model {
     static associate(models) {
-      NivelAcesso.hasMany(models.User, {
-        foreignKey: 'nivelAcesso',
+      NivelAcesso.hasMany(models.Usuario, {
+        foreignKey: 'idNivelAcesso',
+        as: 'usuarios'
       });
     }
   }
@@ -12,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     nivelAcesso: DataTypes.INTEGER,
     glossarioNivel: DataTypes.STRING,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'NivelAcesso',
-    tableName: 'nivelAcessos',
+    tableName: 'nivelAcessos'
   });
   return NivelAcesso;
 };

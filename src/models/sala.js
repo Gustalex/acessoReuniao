@@ -1,10 +1,17 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Sala extends Model {
     static associate(models) {
       Sala.hasMany(models.Reserva, {
-        foreignKey: 'id_sala',
+        foreignKey: 'idSala',
+        as: 'reservas'
+      });
+      Sala.hasMany(models.EstadoSala, {
+        foreignKey: 'idSala',
+        as: 'estados'
       });
     }
   }
@@ -13,14 +20,13 @@ module.exports = (sequelize, DataTypes) => {
     andar: DataTypes.INTEGER,
     area: DataTypes.STRING,
     capMax: DataTypes.INTEGER,
-    observacao: DataTypes.STRING,
     situacao: DataTypes.CHAR,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Sala',
-    tableName: 'salas',
+    tableName: 'salas'
   });
   return Sala;
 };

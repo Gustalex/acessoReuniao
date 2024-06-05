@@ -1,27 +1,26 @@
-npx sequelize-cli model:generate --name TipoUsuario --attributes tipoUser:integer,glossarioTipo:string,createdAt:date,updatedAt:date
-//Criar tipoUsuario
+npx sequelize-cli model:generate --name NivelAcesso --attributes nivelAcesso:integer,glossarioNivel:string
+//Cria nivel de NivelAcesso
 
-npx sequelize-cli model:generate --name NivelAcesso --attributes nivelAcesso:integer,glossarioNivel:string,createdAt:date,updatedAt:date
-//Criar nivelAcesso
+npx sequelize-cli model:generate --name Recepcionista --attributes login:string,senha:string,nome:string,sobrenome:string,ativo:boolean,nivelAcesso:integer
+//Cria Recepcionista
 
-npx sequelize-cli model:generate --name User --attributes login:string,senha:string,identificador:string,ativo:boolean,tipo:integer,nivelAcesso:integer,createdAt:date,updatedAt:date
-//Criar user
+npx sequelize-cli model:generate --name Usuario --attributes identificador:string,nome:string,email:string,numTelefone:string,sobrenome:string,dataNascimento:date
+//Cria Usuario
 
-npx sequelize-cli model:generate --name Participante --attributes userId:integer,nome:string,sobrenome:string,email:string,numTelefone:string,createdAt:date,updatedAt:date
-//Criar participante
+npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,situacao:char
+//Cria Sala
 
-npx sequelize-cli model:generate --name Sala --attributes nome:string,andar:integer,area:string,capMax:integer,observacao:string,situacao:char,createdAt:date,updatedAt:date
-//Criar sala
+npx sequelize-cli model:generate --name EstadoSala --attributes observacao:string,idSala:integer
+//Cria EstadoSala
 
-npx sequelize-cli model:generate --name Reserva --attributes id_reservista:integer,id_sala:integer,id_adm:integer,dataReservada:date,dataReservada:date,horaINicio:time,horaFimReserva:time,statusReserva:string,dataModificacaoStatus:date,motivoReserva:string,createdAt:date,updatedAt:date
-//Criar reserva
+npx sequelize-cli model:generate --name Reserva --attributes idSala:integer,idUsuario:integer,dataInicio:date,dataFim:date
+//Cria Reserva
 
-npx sequelize-cli model:generate --name Fracaso --attributes idUser:integer,exception:string,mensage:string,createdAt:date,updatedAt:date
-//Criar fracaso
+npx sequelize-cli model:generate --name Fracaso --attributes exception:string,mensage:string,tabelaEnvolvida:string
+//Cria Fracaso
 
+npx sequelize-cli model:generate --name ListaNegra --attributes idResponsavel:integer,idReservaMotivo:integer,codBloqueio:string,motivo:string,dataBloqueio:date
+//Cria ListaNegra
 
-npx sequelize-cli model:generate --name ListaNegra --attributes idResponsavel:integer,idReservaMotivo:integer,motivo:string,dataBloqueio:date,createdAt:date,updatedAt:date
-//Criar listaNegra
-
-npx sequelize-cli model:generate --name Reuniao --attributes reservaId:integer,idParticipante:integer,createdAt:date,updatedAt:date
-//Criar reuniao
+npx sequelize-cli model:generate --name Reuniao --attributes reservaId:integer,idParticipante:JSON
+//Cria Reuniao

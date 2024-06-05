@@ -1,26 +1,26 @@
-//Criar tipo_usuario
-npx sequelize-cli seed:generate --name demo-tipoUsuario
-
-//Criar nivel_acesso
+//Criar nivelAcesso
 npx sequelize-cli seed:generate --name demo-nivelAcesso
 
-//Criar user
-npx sequelize-cli seed:generate --name demo-user
+//Criar recepcionista
+npx sequelize-cli seed:generate --name demo-recepcionista
 
-//Criar participante
-npx sequelize-cli seed:generate --name demo-participante
+//Criar usuario
+npx sequelize-cli seed:generate --name demo-usuario
 
-//Criar Sala
+//Criar estadoSala
+npx sequelize-cli seed:generate --name demo-estadoSala
+
+//Criar sala
 npx sequelize-cli seed:generate --name demo-sala
 
 //Criar reserva
 npx sequelize-cli seed:generate --name demo-reserva
 
-//Criar fracaso
+//Criar Fracaso
 npx sequelize-cli seed:generate --name demo-fracaso
 
-//Criar listaNegra
+//Criar ListaNegra
 npx sequelize-cli seed:generate --name demo-listaNegra
 
-//Criar reuniao
+//Criar Reuniao
 npx sequelize-cli seed:generate --name demo-reuniao
