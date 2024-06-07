@@ -1,5 +1,4 @@
 const Services=require('./services.js');
-const dataSource=require('../models');
 const z=require('zod');
 
 class FracasoServices extends Services{
@@ -13,4 +12,4 @@ class FracasoServices extends Services{
     }
 }
 
-module.exports=FracasoServices();
+module.exports=FracasoServices;

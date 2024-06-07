@@ -1,5 +1,4 @@
 const Services=require('./services.js');
-const dataSoucrce=require('../models');
 const z=require('zod');
 
 class ListaNegraServices extends Services{
@@ -15,4 +14,4 @@ class ListaNegraServices extends Services{
     }
 }
 
-module.exports=ListaNegraService();
+module.exports=ListaNegraServices;

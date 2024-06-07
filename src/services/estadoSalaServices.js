@@ -1,5 +1,4 @@
 const Services=require('./services.js');
-const dataSource=require('./services.js');
 const z=require('zod');
 
 class EstadoSalaServices extends Services{
@@ -11,4 +10,4 @@ class EstadoSalaServices extends Services{
     }
 }
 
-module.exports=EstadoSalaServices();
+module.exports=EstadoSalaServices;

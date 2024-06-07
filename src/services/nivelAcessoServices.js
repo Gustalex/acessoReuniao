@@ -1,5 +1,4 @@
 const Services=require('./services.js');
-const dataSource=require('../models');
 const z=require('zod');
 
 class NivelAcessoServices extends Services{
@@ -11,4 +10,4 @@ class NivelAcessoServices extends Services{
     }
 }
 
-module.exports=NivelAcessoServices();
+module.exports=NivelAcessoServices;
