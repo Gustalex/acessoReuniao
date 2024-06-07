@@ -21,44 +21,101 @@ O objetivo deste projeto é desenvolver uma API REST para auxiliar na gestão de
 
 ### Funcionalidades Previstas
 > Este projeto consiste na criação e integração de uma API desenvolvida em JS e sqLite para auxiliar operações CRUD (Create, Read, Update, Delete) e outras funcionalidade nas entidades de adm, sala, reservista, reserva.
-> - adm
 
-|ATRIBUTO|DESCRIÇÃO|TIPO|
-| -------| --------------------- | --------- |
-|id |  Identificador único da adm | (ObjectID) |
-|login | registro de login | (String, obrigatório) |
-|senha | senha de acesso de um adm | (String, obrigatório) |
 
-> - reservista
+# Estrutura do Banco de Dados
 
-|ATRIBUTO|DESCRIÇÃO|TIPO|
-| -------| --------------------- | --------- |
-|id |  Identificador único do reservista | (ObjectID) |
-|cpf | Número de CPF da pessoa | (String, obrigatório) |
-|nome |  Nome completo da pessoa | (String, obrigatório) |
+Este documento descreve a estrutura das tabelas do banco de dados utilizado no sistema. As tabelas são organizadas de acordo com as entidades do sistema e seus respectivos atributos.
 
-> - sala
+## Tabelas
 
-|ATRIBUTO|DESCRIÇÃO|TIPO|
-| -------| --------------------- | --------- |
-|id | Identificador único da sala | (ObjectID) |
-|nome | nome destinado a sala | (String, obrigatório)|
-|andar | qual andar do CTI está | (Number, obrigatório) |
-|area | em qual aréa está localizado ex.: "oxeTech" | (String, obrigatório) |
-|capMax | indica se a divida já foi paga ou não | (Number, obrigatório) |
-|observacao | compo destinado para indicar se há algo de icomum na sala | (string, opicional) |
+1. **NivelAcesso**
 
-> - reserva
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | nivelAcesso | Nível de acesso do usuário | Integer |
+    | glossarioNivel | Descrição do nível de acesso | String |
 
-|ATRIBUTO|DESCRIÇÃO|TIPO|
-| -------| --------------------- | --------- |
-|id |Identificador único da reserva	| (ObjectID) |
-|id_reservista | ID da pessoa responsável pela reserva | (ObjectID, referência à entidade reservista, obrigatório) |
-|id_sala | ID da sala reservada | (ObjectID, referência à entidade sala, obrigatório) |
-|id_adm | ID do administrador responsável pela reserva | (ObjectID, referência à entidade adm, obrigatório) |
-|dataReservada | Indica a data e hora da reserva | (Date) |
-|creatAt | Data de criação do registro da reserva | (Date) |
-|upDateAt | Data da última atualização do registro da reserva | (Date) |
+2. **Recepcionista**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | login | Registro de login do recepcionista | String |
+    | senha | Senha de acesso do recepcionista | String |
+    | nome | Nome do recepcionista | String |
+    | sobrenome | Sobrenome do recepcionista | String |
+    | ativo | Indica se o recepcionista está ativo ou não | Boolean |
+    | nivelAcesso | Nível de acesso do recepcionista | Integer (FK -> NivelAcesso) |
+
+3. **Usuario**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | cpf | Número de CPF do usuário | String |
+    | nome | Nome do usuário | String |
+    | email | Endereço de email do usuário | String |
+    | numTelefone | Número de telefone do usuário | String |
+    | sobrenome | Sobrenome do usuário | String |
+    | dataNascimento | Data de nascimento do usuário | Date |
+
+4. **Sala**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | nome | Nome da sala | String |
+    | andar | Andar onde a sala está localizada | Integer |
+    | area | Área onde a sala está localizada | String |
+    | capMax | Capacidade máxima da sala | Integer |
+    | situacao | Situação da sala (DISPONÍVEL ou OCUPADA) | String |
+
+5. **EstadoSala**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | observacao | Observações sobre o estado da sala | String |
+    | idSala | Identificador único da sala | Integer (FK -> Sala) |
+
+6. **Reserva**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | id_reservista | ID do usuário responsável pela reserva | Integer (FK -> Usuario) |
+    | id_sala | ID da sala reservada | Integer (FK -> Sala) |
+    | id_adm | ID do administrador responsável pela reserva | Integer (FK -> Usuario) |
+    | dataReserva | Data da reserva | Date |
+    | dataReservada | Data e hora da reserva | Date |
+    | horaInicio | Hora de início da reserva | String |
+    | horaFimReserva | Hora de término da reserva | String |
+    | statusReserva | Status da reserva | String |
+    | dataModificacaoStatus | Data da última modificação do status | Date |
+    | motivoReserva | Motivo da reserva | String |
+
+7. **Fracasso**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | exception | Descrição da exceção | String |
+    | mensagem | Mensagem de erro | String |
+    | tabelaRelacionada | Tabela relacionada à exceção | String |
+    | funcaoRelacionada | Função relacionada à exceção | String |
+
+8. **ListaNegra**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | idResponsavel | ID do usuário responsável | Integer (FK -> Usuario) |
+    | idReservaMotivo | ID da reserva associada | Integer (FK -> Reserva) |
+    | codBloqueio | Código de bloqueio | String |
+    | motivo | Motivo do bloqueio (infração) | String |
+    | dataBloqueio | Data do bloqueio | Date |
+
+9. **Reuniao**
+
+    | Atributo | Descrição | Tipo |
+    |----------|-----------|------|
+    | reservaId | ID da reserva associada | Integer (FK -> Reserva) |
+    | idParticipante | ID do participante da reunião | Integer |
+
 
 ### Requisitos funcionais da API
 #### CRUD
@@ -67,6 +124,7 @@ O objetivo deste projeto é desenvolver uma API REST para auxiliar na gestão de
 > Consultar entidade expecifica pelo ID
 > Editar entidade
 > Deletar entidade
+
 #### Adicionais
 > Verificar disponibildaide em uma determinada data para uma sala
 > Listar todas as reservas de uma sala
@@ -96,7 +154,7 @@ git clone https://github.com/EneasDavid/acessoReuniao
 npm run dev
 ```
 > - iniciar a API
-
+`Apenas o run dev dá conta de start toda aplicação`
 ```
 npx sequelize-cli db:migrate
 ```
