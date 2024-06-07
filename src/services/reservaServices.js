@@ -10,9 +10,9 @@ class ReservaServices extends Services{
             dataReservada:z.string().date({message:"O campo dataReservada necessita do time yyyy-mm-dd"}),
             horaInicio:z.string().time({message:"O campo horaInicio necessita do time hh:mm:ss"}),
             horaFimReserva:z.string().time({message:"O campo horaFimReserva necessita do time hh:mm:ss"}),
-            statusReserva:z.string().length(1,{message:"o campo statusReserva necessita de apenas um caracter"}),
+            statusReserva:z.string().length(1,{message:"o campo statusReserva necessita de apenas um caracter"}).toUpperCase(),
             dataModificacaoStatus:z.string().date({message:"O campo dataModificacaoStatus necessita do time yyyy-mm-dd"}),
-            motivoReserva:z.string().min(5,{message:"o campo motivoReserva necessita de NO MINIMO 5 caracteres"}).max(255,{message:"o campo motivoReserva necessita de NO MAXIMO 255 caracteres"}),
+            motivoReserva:z.string().min(5,{message:"o campo motivoReserva necessita de NO MINIMO 5 caracteres"}).max(255,{message:"o campo motivoReserva necessita de NO MAXIMO 255 caracteres"}).optional(),
           }));
     }
     async reservaStatus(situacao){
