@@ -18,15 +18,15 @@ module.exports = {
         allowNull: false
       },
       dataReservada: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       horaInicio: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       horaFimReserva: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       statusReserva: {
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false
       },
       dataModificacaoStatus: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true
       },
       motivoReserva: {

@@ -1,5 +1,5 @@
 const Services=require('./services.js');
-const dataSuorce=require('../models/index.js');
+const dataSuorce=require('../models');
 const z=require('zod');
 
 class ReservaServices extends Services{
@@ -8,8 +8,8 @@ class ReservaServices extends Services{
             idSala:z.number().int({message:"O campo de idSala necessita ser um numero inteiro"}).positive({message:"O campo de idSala necessita ser um numero inteiro positivo"}),
             idUsuario:z.number().int({message:"O campo de idUsuario necessita ser um numero inteiro"}).positive({message:"O campo de idUsuario necessita ser um numero inteiro positivo"}),
             dataReservada:z.string().date({message:"O campo dataReservada necessita do time yyyy-mm-dd"}),
-            horaInicio:z.string().date({message:"O campo horaInicio necessita do time hh:mm:ss"}),
-            horaFimReserva:z.string().date({message:"O campo horaFimReserva necessita do time hh:mm:ss"}),
+            horaInicio:z.string().time({message:"O campo horaInicio necessita do time hh:mm:ss"}),
+            horaFimReserva:z.string().time({message:"O campo horaFimReserva necessita do time hh:mm:ss"}),
             statusReserva:z.string().length(1,{message:"o campo statusReserva necessita de apenas um caracter"}),
             dataModificacaoStatus:z.string().date({message:"O campo dataModificacaoStatus necessita do time yyyy-mm-dd"}),
             motivoReserva:z.string().min(5,{message:"o campo motivoReserva necessita de NO MINIMO 5 caracteres"}).max(255,{message:"o campo motivoReserva necessita de NO MAXIMO 255 caracteres"}),

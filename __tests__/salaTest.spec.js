@@ -2,14 +2,13 @@ const request=require('supertest');
 const app='http://localhost:3000';
 
 describe('Teste das rotas de sala', ()=>{
-    const atributos = ['nome', 'andar', 'area', 'capMax', 'observacao', 'situacao'];
+    const atributos = ['nome', 'andar', 'area', 'capMax', 'situacao'];
     const sala={
         id:4,
         nome: "Sala 4",
         andar: 0,
         area: "Coworking",
         capMax: 5,
-        observacao: "Arcondicionado quebrado",
         situacao: "A",
     }
     it('Deve listar todas as salas', async () => {

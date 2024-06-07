@@ -5,13 +5,13 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class ListaNegra extends Model {
     static associate(models) {
-      ListaNegra.belongsTo(models.Responsavel, {
+      ListaNegra.belongsTo(models.Usuario, {
         foreignKey: 'idResponsavel',
-        as: 'responsavel'
+        as: 'usuario'
       });
-      ListaNegra.belongsTo(models.ReservaMotivo, {
+      ListaNegra.belongsTo(models.Reserva, {
         foreignKey: 'idReservaMotivo',
-        as: 'reservaMotivo'
+        as: 'reserva'
       });
     }
   }

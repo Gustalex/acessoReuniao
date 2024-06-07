@@ -1,4 +1,4 @@
-const Services=require('./services,js');
+const Services=require('./services.js');
 const z=require('zod');	
 
 class ReuniaoServices extends Services{
