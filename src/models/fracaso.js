@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
   Fracaso.init({
     exception: DataTypes.STRING,
     mensage: DataTypes.STRING,
-    tabelaEnvolvida: DataTypes.STRING,
+    tabelaRelacionada: DataTypes.STRING,
+    funcaoRelacionada: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

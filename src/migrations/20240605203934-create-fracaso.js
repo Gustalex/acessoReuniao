@@ -15,9 +15,13 @@ module.exports = {
       },
       mensage: {
         type: Sequelize.STRING,
+        allowNull: true
+      },
+      tabelaRelacionada: {
+        type: Sequelize.STRING,
         allowNull: false
       },
-      tabelaEnvolvida: {
+      funcaoRelacionada: {
         type: Sequelize.STRING,
         allowNull: false
       },
