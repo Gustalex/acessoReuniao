@@ -1,5 +1,5 @@
 const Services=require('./services.js');
-const dataSuorce=require('../models');
+const dataSource = require('../models/index.js');
 const z=require('zod');
 
 class ReservaServices extends Services{
@@ -16,53 +16,78 @@ class ReservaServices extends Services{
           }));
     }
     async reservaStatus(situacao){
-        return await dataSource.Reserva.findAll({where:{statusReserva:situacao}});
+        try{
+            return await dataSource.Reserva.findAll({where:{statusReserva:situacao}});
+        }catch(error){
+            await this.salvarErro(error.name, error.message, 'Reserva', 'reservaStatus');
+            throw error;
+        }
     }
 
     async verificaHorarioReserva(id_sala, dataReservada) {
-        const reservas = await dataSource.Reserva.findAll({
-            where: {
-                id_sala: id_sala,
-                dataReservada: dataReservada,
-                statusReserva: ['confirmada', 'pendente']
-            }
-        });
-        return reservas.length > 0;
+        try{
+            const reservas = await dataSource.Reserva.findAll({
+                where: {
+                    idSala: id_sala,
+                    dataReservada: dataReservada,
+                    statusReserva: ['confirmada', 'pendente']
+                }
+            });
+            return reservas.length > 0;
+        }catch(error){
+            await this.salvarErro(error.name, error.message, 'Reserva', 'verificaHorarioReserva');
+            throw error;
+        }
     }
     
     async verificaDisponibilidade(id_sala, dataReservada, horaReservada) {
-        const reservaDia = await this.verificaHorarioReserva(id_sala, dataReservada);
-        if (!reservaDia) return false;
-        const reserva = await dataSource.Reserva.findOne({
-            where: {
-                id_sala: id_sala,
-                dataReservada: dataReservada,
-                horaReservada: horaReservada,
-                statusReserva: ['confirmada', 'pendente']
-            }
-        });
-        return reserva;
+        try{
+            const reservaDia = await this.verificaHorarioReserva(id_sala, dataReservada);
+            if (!reservaDia) return false;
+            const reserva = await dataSource.Reserva.findOne({
+                where: {
+                    idSala: id_sala,
+                    dataReservada: dataReservada,
+                    horaInicio: horaReservada,
+                    statusReserva: ['confirmada', 'pendente']
+                }
+            });
+            return reserva;
+        }catch(error){
+            await this.salvarErro(error.name, error.message, 'Reserva', 'verificaDisponibilidade');
+            throw error;
+        }
     }
     
     async criaRegistro(novoRegistro) {
-        const response = await this.verificaDisponibilidade(novoRegistro.id_sala, novoRegistro.dataReservada, novoRegistro.horaInicio);
-        if (response) return { error: 'Sala já reservada' };
-        novoRegistro.statusReserva = 'pendente';
+        try{
+            const response = await this.verificaDisponibilidade(novoRegistro.idSala, novoRegistro.dataReservada, novoRegistro.horaInicio);
+            if (response) return { error: 'Sala já reservada' };
+            novoRegistro.statusReserva = 'pendente';
 
-        //Por isso separado 
-        const [hours, minutes] = novoRegistro.horaInicio.split(":").map(Number);
-        const novaHora = (hours + 3) % 24; // Adiciona 3 horas e garante que a hora permaneça dentro do intervalo de 0 a 23
-        const novaHoraString = `${novaHora.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            //Por isso separado 
+            const [hours, minutes] = novoRegistro.horaInicio.split(":").map(Number);
+            const novaHora = (hours + 3) % 24; // Adiciona 3 horas e garante que a hora permaneça dentro do intervalo de 0 a 23
+            const novaHoraString = `${novaHora.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            
+            novoRegistro.horaFimReserva = novaHoraString;
+            
         
-        novoRegistro.horaFimReserva = novaHoraString;
-        
-    
-        const createdReserva = await dataSource.Reserva.create(novoRegistro);
-        return createdReserva;
+            const createdReserva = await dataSource.Reserva.create(novoRegistro);
+            return createdReserva;
+        }catch(error){
+            await this.salvarErro(error.name, error.message, 'Reserva', 'criaRegistro');
+            throw error;
+        }
     }
     
     async buscarReservista(id_reservista){
-        return await dataSource.Reserva.findOne({where:{id_reservista:id_reservista}});
+        try{
+            return await dataSource.Reserva.findOne({where:{idUsuario:id_reservista}});
+        }catch(error){
+            await this.salvarErro(error.name, error.message, 'Reserva', 'buscarReservista');
+            throw error;
+        }
     }
 }
 

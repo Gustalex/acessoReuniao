@@ -12,7 +12,7 @@ module.exports = {
         situacao: 'A',
         createdAt: new Date(),
         updatedAt: new Date()
-        },{
+      },{
           nome: 'Sala 2',
           andar: 0,
           area: 'coorwoking',
@@ -20,7 +20,7 @@ module.exports = {
           situacao: 'A',
           createdAt: new Date(),
           updatedAt: new Date()
-        },{
+      },{
           nome: 'Sala 3',
           andar: 0,
           area: 'coorwoking',
@@ -28,7 +28,7 @@ module.exports = {
           situacao: 'A',
           createdAt: new Date(),
           updatedAt: new Date()
-        },{
+      },{
           nome: '116',
           andar: 1,
           area: 'sala de reunião',
@@ -36,8 +36,7 @@ module.exports = {
           situacao: 'A',
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        
+      },  
       ], {});
   },
 

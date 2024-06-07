@@ -51,6 +51,7 @@ class Services {
 
     async criaRegistro(dados) {
         try {
+            console.log(dados);
             await this.validarDados(dados);
             return await dataSource[this.model].create(dados);
         } catch (error) {
@@ -73,7 +74,7 @@ class Services {
                 ...dadosAtualizados,
                 updatedAt: new Date(),
             };
-
+                        
             await this.validarDados(dadosParaAtualizar);
 
             return await dataSource[this.model].update(dadosParaAtualizar, { where: { id } });

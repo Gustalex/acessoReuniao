@@ -13,11 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idUsuario',
         as: 'usuario'
       });
+      Reserva.belongsTo(models.Usuario, {
+        foreignKey: 'idRecepcionista',
+        as: 'recepcionista'
+      });
     }
   }
   Reserva.init({
     idSala: DataTypes.INTEGER,
     idUsuario: DataTypes.INTEGER,
+    idRecepcionista: DataTypes.INTEGER,
     dataReservada: DataTypes.STRING,
     horaInicio: DataTypes.STRING,
     horaFimReserva:  DataTypes.STRING,

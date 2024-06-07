@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      idRecepcionista: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       dataReservada: {
         type: Sequelize.STRING,
         allowNull: false

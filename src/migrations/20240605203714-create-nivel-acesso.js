@@ -11,6 +11,7 @@ module.exports = {
       },
       nivelAcesso: {
         type: Sequelize.INTEGER,
+        unique: true,
         allowNull: false
       },
       glossarioNivel: {

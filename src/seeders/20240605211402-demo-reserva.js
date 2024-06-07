@@ -7,6 +7,7 @@ module.exports = {
       {
         idSala: 1,
         idUsuario: 1,
+        idRecepcionista: 1,
         dataReservada: new Date(),
         horaInicio: new Date(), //pegar apenas horas e minutos
         horaFimReserva: new Date(),
@@ -18,6 +19,7 @@ module.exports = {
       },{
         idSala: 2,
         idUsuario: 2,
+        idRecepcionista: 1,
         dataReservada: new Date(),
         horaInicio: new Date(), //pegar apenas horas e minutos
         horaFimReserva: new Date(),
@@ -29,6 +31,7 @@ module.exports = {
       },{
         idSala: 3,
         idUsuario: 3,
+        idRecepcionista: 1,
         dataReservada: new Date(),
         horaInicio: new Date(), //pegar apenas horas e minutos
         horaFimReserva: new Date(),
@@ -40,6 +43,7 @@ module.exports = {
       },{
         idSala: 4,
         idUsuario: 4,
+        idRecepcionista: 2,
         dataReservada: new Date(),
         horaInicio: new Date(), //pegar apenas horas e minutos
         horaFimReserva: new Date(),
@@ -54,11 +58,5 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete('reservas', null, {});
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
   }
 };
