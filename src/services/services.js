@@ -6,10 +6,12 @@ class Services {
         this.validador = validador;
     }
 
-    async salvarErro(exception, mensagem) {
+    async salvarErro(exception, mensagem, tabelaRelacionada, funcaoRelacionada) {
         const erro = {
             exception: exception,
-            message: mensagem,
+            mensage: mensagem,
+            tabelaRelacionada: tabelaRelacionada,
+            funcaoRelacionada: funcaoRelacionada,
         };
         try {
             await dataSource.Fracaso.create(erro);
@@ -25,7 +27,6 @@ class Services {
         } catch (error) {
             const invalidFields = error.errors.map(err => `${err.path}: ${err.message}`).join(', ');
             const errorMessage = `Dados inválidos: ${invalidFields}`;
-            await this.salvarErro(error.name, errorMessage);
             throw new Error(errorMessage);
         }
     }
@@ -34,7 +35,7 @@ class Services {
         try {
             return await dataSource[this.model].findAll();
         } catch (error) {
-            await this.salvarErro(error.name, error.message);
+            await this.salvarErro(error.name, error.message, this.model, 'pegaTodosOsRegistros');
             throw error;
         }
     }
@@ -43,7 +44,7 @@ class Services {
         try {
             return await dataSource[this.model].findOne({ where: { id } });
         } catch (error) {
-            await this.salvarErro(error.name, error.message);
+            await this.salvarErro(error.name, error.message, this.model, 'pegaUmRegistro');
             throw error;
         }
     }
@@ -53,7 +54,7 @@ class Services {
             await this.validarDados(dados);
             return await dataSource[this.model].create(dados);
         } catch (error) {
-            await this.salvarErro(error.name, error.message);
+            await this.salvarErro(error.name, error.message, this.model, 'criaRegistro');
             throw error;
         }
     }
@@ -77,7 +78,7 @@ class Services {
 
             return await dataSource[this.model].update(dadosParaAtualizar, { where: { id } });
         } catch (error) {
-            await this.salvarErro(error.name, error.message);
+            await this.salvarErro(error.name, error.message, this.model, 'atualizaRegistro');
             throw error;
         }
     }
@@ -86,7 +87,7 @@ class Services {
         try {
             return await dataSource[this.model].destroy({ where: { id } });
         } catch (error) {
-            await this.salvarErro(error.name, error.message);
+            await this.salvarErro(error.name, error.message, this.model, 'deletaRegistro');
             throw error;
         }
     }

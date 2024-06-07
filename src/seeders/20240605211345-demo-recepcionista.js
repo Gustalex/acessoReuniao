@@ -3,10 +3,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('recepecionistas', [
+    await queryInterface.bulkInsert('recepcionistas', [
       {
         login: 'garota de ipanema',
-        senha: false,
+        senha: 'quase me chamou de amor',
         nome:'Bruna',
         sobrenome:'Castro',
         ativo: true,
@@ -15,7 +15,7 @@ module.exports = {
         updatedAt: new Date()
       },{
         login: 'chefion',
-        senha: false,
+        senha: 'culpado de amor',
         nome:'Ulpio',
         sobrenome:'Neto',
         ativo: true,
@@ -27,6 +27,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('recepecionistas', null, {});
+    await queryInterface.bulkDelete('recepcionistas', null, {});
   }
 };
