@@ -1,5 +1,5 @@
 const Services=require('./services.js');
-const dataSuorce=require('../models');
+const dataSuorce=require('../models/index.js');
 const z=require('zod');
 
 class ReservaServices extends Services{
