@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idRecepcionista',
         as: 'reservas'
       });
+      Recepcionista.belongsTo(models.NivelAcesso, {
+        foreignKey: 'nivelAcesso',
+        as: 'nivelAcessos'
+      });
     }
   }
   Recepcionista.init({

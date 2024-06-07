@@ -5,10 +5,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     static associate(models) {
-      Usuario.belongsTo(models.NivelAcesso, {
-        foreignKey: 'idNivelAcesso',
-        as: 'nivelAcesso'
-      });
       Usuario.hasMany(models.Reserva, {
         foreignKey: 'idUsuario',
         as: 'reservas'
@@ -21,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     sobrenome: DataTypes.STRING,
     email: DataTypes.STRING,
     numTelefone: DataTypes.STRING,
-    dataNascimento: DataTypes.DATE,
+    dataNascimento: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     idReservaMotivo: DataTypes.INTEGER,
     codBloqueio: DataTypes.STRING,
     motivo: DataTypes.STRING,
-    dataBloqueio: DataTypes.DATE,
+    dataBloqueio: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

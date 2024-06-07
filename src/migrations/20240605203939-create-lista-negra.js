@@ -26,7 +26,7 @@ module.exports = {
         allowNull: false
       },
       dataBloqueio: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
